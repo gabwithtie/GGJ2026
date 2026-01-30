@@ -15,9 +15,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <EnableDefaultItems>false</EnableDefaultItems>
     <LangVersion>9.0</LangVersion>
-    <RootNamespace>RealtimeCSG</RootNamespace>
+    <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
-    <AssemblyName>RealtimeCSG</AssemblyName>
+    <AssemblyName>Unity.ProBuilder.Csg</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
@@ -48,200 +48,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\CSG_GUIStyleUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.FreeDraw.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Attributes\EnumAsFlagsAttribute.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\TransformSelection.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\FBXMeshToString.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\SelectBrushSurface.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Grid\GridUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\GeneratedMeshInstance.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Operations\BrushOperations.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\RectangleSelectionManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Sphere.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Base.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\PolygonMeshRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Cylinder.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModeSelection.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGFreeMove.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Clip.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Edit.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Place.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.FreeDraw.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Edit.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\Shape\MathConstants.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Utility\VisibilityUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Settings\CSGSettings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Sphere.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\ControlMeshState.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.ExtrudedBase.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\IGenerator.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\CSGRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\MeshInstanceManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\UnityCompilerDefineManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\MeshInstanceManager.Export.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.SpiralStairs.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Utility\CursorUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\OperationsUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\SceneQuery\BrushIntersection.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\SceneQuery\AABB.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\SelectionUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Generate.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\ComponentEditorWindows\CSGModelComponent.Inspector.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Generated\Icons\EmbeddedAssets.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\GeometryUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\FilteredSelection.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\CSGModelExported.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGFreeRotate.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Cylinder.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\MeshInstanceManager.Build.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\FBXModelPostProcessor.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.LinearStairs.Settings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditorWindow\Debug.HierarchyWindow.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Box.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Managers\CSGSceneManagerInterface.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\SurfaceUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Utility\GameObjectExtensions.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.SpiralStairs.Settings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\DragAndDrop\ISceneDragTool.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\ControlMeshState.Selection.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Generate.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\ShapeUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\PreferenceWindows\CSGOptions.PreferenceWindow.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Cylinder.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.Lifetime.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.UpdateMeshes.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.DefaultModel.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\UnityGridManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModeManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.LinearStairs.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\SceneQuery\SceneQueryUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\SceneQuery\BoundsUtilities.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\InternalFlags.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\TexGenState.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\GUIConstants.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\BrushOutlineRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Common.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.SpiralStairs.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\ControlMeshUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\BrushUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\BrushOutlineManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\FBXUnityMaterialGetter.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Grid\CSGGrid.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\IEditMode.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\IShapeSettings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.FreeDraw.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModeToolWindow.SceneGUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Settings\Keys.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\CSGSceneManagerInstance.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\PreferenceWindows\CSGKeys.PreferenceWindow.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Place.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Surface.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Settings\KeyEvent.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\ComponentEditorWindows\ExportedModelComponent.Editor.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Box.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Place.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\PaintUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.LinearStairs.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\CSG_EditorGUIUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Sphere.Settings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\SceneViewInfoGUI\SceneViewInfo.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\ModelTraits.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\SceneViewBottomBarGUI\SurfaceVisibilityPopup.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\SceneToolRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModeToolWindow.Editor.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\SceneViewBottomBarGUI\SceneViewBottomBar.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Surface.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Clip.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\ComponentEditorWindows\CSGModelComponent.Inspector.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGSlider2D.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGSlider1D.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\Legacy\LegacyGeneratedMeshContainer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\SceneViewInfoGUI\SceneViewInfo.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Selection\BrushSelection.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGBounds.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\CSG_HandleUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\HierarchyWindowItemGUI\HierarchyWindowItemGUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\FBXExporter.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\TooltipContentState.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Surface.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Outline2D.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\FBXUnityMeshGetter.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.Caches.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Operations\ControlMeshOperations.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\LineMeshRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModeSelection.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\CameraUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\SnappedPoint.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\DragAndDrop\SceneDragTool.BrushDragOnSurface.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Box.Settings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Box.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Bindings\NativeMethods.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\RotationCircle.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.LinearStairs.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\UndoGroup.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Units.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Utility\Icon2EmbeddedAssetsUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\ComponentEditorWindows\GeneratedMeshesComponent.Editor.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Components\GeneratedMeshes.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGScaleSlider.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Generate.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Cylinder.Settings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\Tooltip.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Hierarchy\ParentNodeDataExtension.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\SceneViewBottomBarGUI\SceneViewBottomBar.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.Sphere.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\DragAndDrop\SceneDragTool.Meshes.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Attributes\CSGModelModifiedEventAttribute.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Utility\PrefabUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\TypeConstants.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\Utility\TooltipUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Operations\TransformOperations.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGHandles.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\SceneViewEventHandler.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Settings\ColorSettings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Managers\CSGSceneManagerRedirector.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Clip.GUIContents.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\MaterialUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Rendering\PointMeshRenderer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Runtime\Scripts\Utility\MeshUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\CSGModelManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Thirdparty\UnityFBXExporter\Editor\ExporterMenu.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\PropertyDrawers\EnumAsFlags.PropertyDrawer.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Edit.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\Scene\Handles\CSGDisc.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\Generator.SpiralStairs.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Bindings\NativeMethodBindings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\EditMode.Common.GUI.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\DragAndDrop\SceneDragToolManager.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\DragAndDrop\SceneDragTool.Materials.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Settings\CSGProjectSettings.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.Registration.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\InternalCSGModelManager.Hierarchy.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Data\Hierarchy\HierarchyItemExtension.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Helpers\ShapePolygonUtility.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\BrushTraits.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\View\GUI\EditModeGUI\EditModes\Generators\CylinderDefinition.cs" />
-    <Compile Include="Assets\Library\RealtimeCSG\Plugins\Editor\Scripts\Control\Managers\UpdateLoop.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\Model.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\Vertex.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\Plane.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\CSG.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\Polygon.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\Node.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\VertexUtility.cs" />
+    <Compile Include="Assets\Library\co.parabox.csg\CSG\Classes\VertexAttributes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\zTestGenericLine.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customSurface.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\grid.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customDot.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\genericLine.shader" />
-    <None Include="Assets\Library\RealtimeCSG\RealtimeCSG.asmdef" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\transparentSpecialSurface.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customWire.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\External\x64\RealtimeCSG[1_559].dll" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\background.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customWireDotted.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\specialSurface.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customThickWire.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\customNoDepthSurface.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\orthogrid.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\noZTestGenericLine.shader" />
-    <None Include="Assets\Library\RealtimeCSG\Plugins\Editor\Resources\Shaders\coloredPolygon.shader" />
+    <None Include="Assets\Library\co.parabox.csg\CSG\Parabox.CSG.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -780,6 +597,30 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\PlaybackEngines\WebGLSupport\UnityEditor.WebGL.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.UWP.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\PlaybackEngines\MetroSupport\UnityEditor.UWP.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.3.3f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -788,12 +629,36 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit@d8c07649098d\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\log4netPlastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@3351acaba9c9\Lib\Editor\unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.IO.Hashing">
       <HintPath>Library\PackageCache\com.unity.collections@aea9d3bd5e19\Unity.Collections.Tests\System.IO.Hashing\System.IO.Hashing.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@191c0d7e3b69\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
