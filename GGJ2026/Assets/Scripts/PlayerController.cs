@@ -83,11 +83,8 @@ namespace GabUnity
 
         private void ApplyCustomGravity()
         {
-            if (isGrounded && rb.linearVelocity.y < 0)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -0.1f, rb.linearVelocity.z);
+            if (isGrounded)
                 return;
-            }
 
             // Quadratic feel: Fall faster than you rise
             float multiplier = (rb.linearVelocity.y > 0) ? upwardGravityMultiplier : downwardGravityMultiplier;

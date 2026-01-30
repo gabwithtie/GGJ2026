@@ -85,6 +85,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\ComboCounter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\Singleton.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusHolder.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\GenericBroadcaster.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Currency\CurrencyManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\CSharp Utility\TrackedVariable.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SerializableDictionary.cs" />
@@ -103,7 +104,9 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusCharger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\PhysicsDragRotator.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SingletonAssetPreloader.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\KillBelow.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\LineSpawner.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\Regener.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Manager_Base.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\GenericListAsset.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\HealthDrainer.cs" />
@@ -147,6 +150,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\ConsistentDataHolder.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\PlaySoundOnDie.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\TriggerForcer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteObstacleSpawner.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\UnitIdentifier.cs" />

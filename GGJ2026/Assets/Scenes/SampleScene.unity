@@ -207,8 +207,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.023517752, y: -0.000000008412379, z: -1.9789498e-10, w: 0.99972343}
-  m_LocalPosition: {x: 0, y: 6.84, z: -10}
+  m_LocalRotation: {x: 0.10688879, y: -0.000000025616002, z: 0.0000000027538405, w: 0.994271}
+  m_LocalPosition: {x: 0, y: 10.059999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 515289127}
   - component: {fileID: 515289126}
   - component: {fileID: 515289128}
+  - component: {fileID: 515289129}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -605,7 +606,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
 --- !u!114 &515289125
 MonoBehaviour:
@@ -650,7 +651,19 @@ MonoBehaviour:
       m_Calls: []
   onDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 515289129}
+        m_TargetAssemblyTypeName: GabUnity.GenericBroadcaster, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &515289127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,11 +686,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 515289119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4d047ebbdbc8240ab1d97b90f251b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7756c1fd50492524fb9e6b4aa704bb6a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetZRigidbody
-  target_z: 0
-  acceleration: 2
+  m_EditorClassIdentifier: Assembly-CSharp::KillBelow
+  kill_height: -2
+--- !u!114 &515289129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515289119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7791f5bf6f74b45a20ff1c1fe0f3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenericBroadcaster
+  action: {fileID: 11400000, guid: 77789c5169b05a04bb4db41135d1f4bb, type: 2}
 --- !u!1 &583159330
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,11 +976,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteObstacleSpawner
   obstaclePrefabs:
+  - {fileID: 5481117422007546622, guid: 06e8d66e86a159043a240daa346a880d, type: 3}
   - {fileID: 8031529597312868499, guid: 44ba76bb273ef4944aa4ed6fa6be6db1, type: 3}
-  - {fileID: 1665850474014416456, guid: 1607db8926f11d045bea78bdcf05e5af, type: 3}
-  density: 9.46
-  probability: 0.497
-  spawnPosition: {x: 0, y: 2.2, z: 30.81}
+  - {fileID: 9191167835403720860, guid: b19a5070cc061f041ba3a3b99342c73a, type: 3}
+  density: 14.29
+  probability: 0.396
+  spawnPosition: {x: 0, y: 0, z: 100}
   startPosition: {x: 0, y: 0, z: 0}
   _speed: 5
   use_global: 1
@@ -1476,8 +1502,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341782573}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.023517752, y: -0.000000008412378, z: -1.9789496e-10, w: 0.99972343}
-  m_LocalPosition: {x: 0, y: 6.84, z: -10}
+  m_LocalRotation: {x: 0.106888786, y: -0.000000025616002, z: 0.00000000275384, w: 0.99427104}
+  m_LocalPosition: {x: 0, y: 10.059999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1501,7 +1527,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 3.19, z: -10}
+  FollowOffset: {x: 0, y: 6.41, z: -10}
 --- !u!114 &1341782577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130de84aadaad48ba5177cd8aaa05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerManager
-  scroll_speed: 10
+  scroll_speed: 16
+  running: 1
 --- !u!1 &1743415528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,8 +1988,8 @@ MonoBehaviour:
   - {fileID: 7234130237315096601, guid: 19cb5713816362d4aab35692a93a39f6, type: 3}
   - {fileID: 2172874193106395865, guid: 18098493f4e637c4692d6a86b537ac58, type: 3}
   - {fileID: 7234130237315096601, guid: 19cb5713816362d4aab35692a93a39f6, type: 3}
-  width: 8
-  spawnPosition: {x: 0, y: 0, z: 62.4}
+  width: 8.02
+  spawnPosition: {x: 0, y: 0, z: 100}
   startPosition: {x: 0, y: 0, z: 0}
   _speed: 5
   use_global: 1

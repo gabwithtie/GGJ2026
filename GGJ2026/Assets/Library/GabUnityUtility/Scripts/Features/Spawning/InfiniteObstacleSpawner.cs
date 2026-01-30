@@ -1,14 +1,15 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace GabUnity
 {
     public class InfiniteObstacleSpawner : MonoBehaviour
     {
+        // ... Keep existing SerializedFields ...
         [Header("Spawn Settings")]
         [SerializeField] private GameObject[] obstaclePrefabs;
-        [SerializeField] private float density = 5.0f; // Distance between spawn checks
-        [Range(0f, 1f)][SerializeField] private float probability = 0.5f; // Chance to spawn (0% to 100%)
+        [SerializeField] private float density = 5.0f;
+        [Range(0f, 1f)][SerializeField] private float probability = 0.5f;
 
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 startPosition;
@@ -24,7 +25,8 @@ namespace GabUnity
         [SerializeField] private float deleteAtZ = -20.0f;
 
         private float distanceTravelled;
-        private Queue<GameObject> activeObstacles = new Queue<GameObject>();
+        // CHANGE: Store Rigidbodies instead of GameObjects
+        private Queue<Rigidbody> activeObstacles = new Queue<Rigidbody>();
 
         private void Start()
         {
@@ -32,59 +34,31 @@ namespace GabUnity
             Prewarm();
         }
 
-        private void Update()
+        // Logic split: Movement belongs in FixedUpdate for physics stability
+        private void FixedUpdate()
         {
             HandleMovement();
+        }
+
+        private void Update()
+        {
             HandleSpawning();
             HandleCleanup();
         }
 
-        private void Prewarm()
-        {
-            float totalDist = Vector3.Distance(startPosition, spawnPosition);
-            int steps = Mathf.FloorToInt(totalDist / density);
-
-            for (int i = 0; i < steps; i++)
-            {
-                // Calculate position behind the spawn point
-                Vector3 pos = spawnPosition + (-direction * (i * density));
-
-                // Roll the dice for prewarm
-                if (Random.value <= probability)
-                {
-                    SpawnObstacle(pos);
-                }
-            }
-        }
-
         private void HandleMovement()
         {
-            // Track distance based on speed and time
-            distanceTravelled += speed * Time.deltaTime;
+            distanceTravelled += speed * Time.fixedDeltaTime;
 
-            foreach (GameObject obj in activeObstacles)
+            foreach (Rigidbody rb in activeObstacles)
             {
-                if (obj != null) obj.transform.position += direction * speed * Time.deltaTime;
-            }
-        }
-
-        private void HandleSpawning()
-        {
-            // If we've moved a distance equal to our density setting
-            if (distanceTravelled >= density)
-            {
-                // Calculate overshoot to keep it mathematically accurate
-                float overshoot = distanceTravelled - density;
-                Vector3 precisePos = spawnPosition + (direction * overshoot);
-
-                // Roll the dice
-                if (Random.value <= probability)
+                if (rb != null)
                 {
-                    SpawnObstacle(precisePos);
+                    // MovePosition tells the physics engine the object moved from A to B
+                    // allowing it to push other colliders (your player) out of the way.
+                    Vector3 newPos = rb.position + (direction * speed * Time.fixedDeltaTime);
+                    rb.MovePosition(newPos);
                 }
-
-                // Reset tracker but keep the overshoot for accuracy
-                distanceTravelled = overshoot;
             }
         }
 
@@ -94,39 +68,68 @@ namespace GabUnity
 
             GameObject prefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
             GameObject go = Instantiate(prefab, pos, Quaternion.identity);
-            activeObstacles.Enqueue(go);
+
+            // Ensure the spawned object has a Rigidbody
+            Rigidbody rb = go.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = go.AddComponent<Rigidbody>();
+                rb.isKinematic = true;
+            }
+
+            activeObstacles.Enqueue(rb);
         }
+
+        // ... Keep Prewarm, HandleSpawning, and HandleCleanup logic (just update types to Rigidbody) ...
 
         private void HandleCleanup()
         {
             if (activeObstacles.Count == 0) return;
 
-            GameObject oldest = activeObstacles.Peek();
+            Rigidbody oldest = activeObstacles.Peek();
             if (oldest == null) { activeObstacles.Dequeue(); return; }
 
-            bool passed = (direction.z < 0) ? (oldest.transform.position.z <= deleteAtZ) : (oldest.transform.position.z >= deleteAtZ);
+            bool passed = (direction.z < 0) ? (oldest.position.z <= deleteAtZ) : (oldest.position.z >= deleteAtZ);
 
             if (passed)
             {
-                Destroy(activeObstacles.Dequeue());
+                Destroy(activeObstacles.Dequeue().gameObject);
             }
         }
 
-        private void OnDrawGizmosSelected()
+        // ... Keep Prewarm and OnDrawGizmos ...
+        private void Prewarm()
         {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(spawnPosition, 0.5f);
+            float totalDist = Vector3.Distance(startPosition, spawnPosition);
+            int steps = Mathf.FloorToInt(totalDist / density);
 
-            // Draw density markers to visualize the rhythm
-            Gizmos.color = new Color(0, 1, 1, 0.3f);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < steps; i++)
             {
-                Gizmos.DrawWireCube(spawnPosition + (-direction * (i * density)), new Vector3(1, 1, 0.1f));
+                Vector3 pos = spawnPosition + (-direction * (i * density));
+                if (Random.value <= probability)
+                {
+                    SpawnObstacle(pos);
+                }
             }
+        }
 
-            Gizmos.color = Color.red;
-            Vector3 cleanupLine = new Vector3(spawnPosition.x, spawnPosition.y, deleteAtZ);
-            Gizmos.DrawCube(cleanupLine, new Vector3(5f, 0.1f, 0.1f));
+        private void HandleSpawning()
+        {
+            // Use Time.deltaTime here as it's called in Update
+            float frameDist = speed * Time.deltaTime;
+            // Note: We don't add to distanceTravelled here because HandleMovement handles it in FixedUpdate
+            // However, to keep spawning synced with visual movement:
+            if (distanceTravelled >= density)
+            {
+                float overshoot = distanceTravelled - density;
+                Vector3 precisePos = spawnPosition + (direction * overshoot);
+
+                if (Random.value <= probability)
+                {
+                    SpawnObstacle(precisePos);
+                }
+                distanceTravelled = overshoot;
+            }
         }
     }
 }

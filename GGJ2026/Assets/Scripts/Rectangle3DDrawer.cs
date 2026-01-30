@@ -43,7 +43,7 @@ namespace GabUnity
                 isSelecting = false;
 
                 if (EnergyManager.TryUseEnergy(currentSelectionCost))
-                    foreach (var cube in selectedColliders) Destroy(cube.gameObject);
+                    foreach (var cube in selectedColliders) cube.CommitDisable();
                 else
                     foreach (var cube in selectedColliders) cube.OnHover(false);
 
