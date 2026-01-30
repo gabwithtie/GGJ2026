@@ -25,7 +25,7 @@ namespace GabUnity
         private Rigidbody rb;
         private int currentLane = 0;
         private float targetXPosition;
-        private bool isGrounded;
+        [SerializeField] private bool isGrounded;
 
         // Calculated variables
         private float gravity;
@@ -41,8 +41,7 @@ namespace GabUnity
         {
             rb = GetComponent<Rigidbody>();
             rb.useGravity = false;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-
+            
             targetXPosition = transform.position.x;
             CalculateJumpPhysics();
         }
@@ -58,7 +57,22 @@ namespace GabUnity
         private void Update()
         {
             HandleLaneMovement();
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            var upforce = 1.0f- collision.contacts[0].normal.y;
+            this.rb.AddForce(Vector3.up * upforce, ForceMode.Acceleration);
+        }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            isGrounded = true;
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            isGrounded = false;
         }
 
         private void FixedUpdate()

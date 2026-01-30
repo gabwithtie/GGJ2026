@@ -457,7 +457,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515289119}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8b7e93aa21d6f6a4a920c9da3f9c78b2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -572,7 +572,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &515289125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,10 +591,11 @@ MonoBehaviour:
   upwardGravityMultiplier: 1.97
   downwardGravityMultiplier: 3.78
   groundCheck: {fileID: 371941261}
-  groundDistance: 0.07
+  groundDistance: 0.05
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  isGrounded: 0
 --- !u!114 &515289126
 MonoBehaviour:
   m_ObjectHideFlags: 0

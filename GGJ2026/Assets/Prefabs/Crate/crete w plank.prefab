@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307907829370875772}
+  - component: {fileID: 6992927448354687108}
   m_Layer: 0
   m_Name: Shipping Container
   m_TagString: Untagged
@@ -33,6 +34,27 @@ Transform:
   - {fileID: 1208300289853077068}
   m_Father: {fileID: 1541962045448216274}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!65 &6992927448354687108
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005604281493206374}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.637193, y: 2.639093, z: 5.8873205}
+  m_Center: {x: -2.867906e-14, y: 0, z: 0.015177838}
 --- !u!1 &1665850474014416456
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +204,7 @@ GameObject:
   - component: {fileID: 8647069186481569514}
   - component: {fileID: 1561765723797490332}
   - component: {fileID: 5284006339286399723}
+  - component: {fileID: 3576208390900235447}
   m_Layer: 0
   m_Name: Wooden Ramp
   m_TagString: Untagged
@@ -261,6 +284,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3576208390900235447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7787346990195974622}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000001, y: 0.02, z: 0.020000035}
+  m_Center: {x: -0.000000014901165, y: 0.01, z: 0.0100000175}
 --- !u!1 &8617942042830924405
 GameObject:
   m_ObjectHideFlags: 0
