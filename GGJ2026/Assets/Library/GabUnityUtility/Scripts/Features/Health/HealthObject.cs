@@ -16,6 +16,7 @@ namespace GabUnity
         [SerializeField] private bool DestroyOnDie = true;
 
         [SerializeField] private UnityEvent<float, UnitIdentifier> onDamageEvent;
+        [SerializeField] private UnityEvent<UnitIdentifier> onDieEvent;
         private Action<UnitIdentifier> onDie;
         private Action<float, UnitIdentifier> onDamage;
         public void SubscribeOnDie(Action<UnitIdentifier> newaction)
@@ -41,6 +42,8 @@ namespace GabUnity
                 return;
 
             onDie?.Invoke(source);
+            onDieEvent.Invoke(source);
+
             if (DestroyOnDie)
             {
                 Destroy(this.gameObject);

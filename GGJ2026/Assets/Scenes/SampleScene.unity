@@ -441,6 +441,8 @@ GameObject:
   - component: {fileID: 515289120}
   - component: {fileID: 515289124}
   - component: {fileID: 515289125}
+  - component: {fileID: 515289127}
+  - component: {fileID: 515289126}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -570,7 +572,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &515289125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,7 +585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8b33ad3b1dcef448939b8936b71d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  laneWidth: 2
   laneSwitchSpeed: 10
   jumpHeight: 6
   timeToJumpApex: 0.5
@@ -594,6 +595,94 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &515289126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515289119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3def03bc0b3f941ac6a0e150e99b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.HealthObject
+  health: 10
+  maxhealth: 10
+  DestroyOnDie: 0
+  onDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &515289127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515289119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c45823d72bd1ff4ca27c9f824227c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.UnitIdentifier
+  _teamId: 0
+--- !u!1 &786386576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786386577}
+  - component: {fileID: 786386578}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786386577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786386576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1089650017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &786386578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786386576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0b84069891d7142b92ec344f7e7571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteObstacleSpawner
+  obstaclePrefabs:
+  - {fileID: 1457259637909397931, guid: b76133d5fa238ed46a2edb54bc0aff7b, type: 3}
+  density: 9.46
+  probability: 0.497
+  spawnPosition: {x: 0, y: 0.5, z: 30.81}
+  startPosition: {x: 0, y: 0, z: 0}
+  _speed: 5
+  use_global: 1
+  direction: {x: 0, y: 0, z: -1}
+  deleteAtZ: -20
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,8 +924,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1967779905}
+  - {fileID: 786386577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1284394322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284394323}
+  - component: {fileID: 1284394324}
+  m_Layer: 0
+  m_Name: Lane Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1284394323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284394322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1287221475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1284394324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284394322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa5b32fb05828b439a008378400533a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneManager
+  lane_width: 3
+  min_lane: -1
+  max_lane: 1
 --- !u!1 &1287221474
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +1006,7 @@ Transform:
   m_Children:
   - {fileID: 1725042036}
   - {fileID: 1743415529}
+  - {fileID: 1284394323}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1287221476
@@ -1006,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c130de84aadaad48ba5177cd8aaa05d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerManager
-  scroll_speed: 20
+  scroll_speed: 12
 --- !u!1 &1743415528
 GameObject:
   m_ObjectHideFlags: 0

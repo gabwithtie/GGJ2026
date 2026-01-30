@@ -14,7 +14,10 @@ namespace GabUnity
         [SerializeField] private Vector3 startPosition;
 
         [Header("Movement Settings")]
-        [SerializeField] private float speed = 5.0f;
+        [SerializeField] private float _speed = 5.0f;
+        [SerializeField] private bool use_global = true;
+        private float speed => use_global ? InfiniteScrollerManager.ScrollSpeed : _speed;
+
         [SerializeField] private Vector3 direction = Vector3.back;
 
         [Header("Cleanup Settings")]

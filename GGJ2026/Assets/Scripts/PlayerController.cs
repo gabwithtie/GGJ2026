@@ -6,8 +6,9 @@ namespace GabUnity
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        private float laneWidth => LaneManager.LaneWidth;
+
         [Header("Lane Settings")]
-        [SerializeField] private float laneWidth = 3.0f;
         [SerializeField] private float laneSwitchSpeed = 15.0f;
 
         [Header("Jump Settings (Quadratic)")]
@@ -91,8 +92,8 @@ namespace GabUnity
             Vector2 input = context.ReadValue<Vector2>();
 
             // X-Axis: Lane Swapping
-            if (input.x < -0.1f && currentLane > -1) currentLane--;
-            else if (input.x > 0.1f && currentLane < 1) currentLane++;
+            if (input.x < -0.1f && currentLane > LaneManager.MinLane) currentLane--;
+            else if (input.x > 0.1f && currentLane < LaneManager.MaxLane) currentLane++;
 
             targetXPosition = currentLane * laneWidth;
 
