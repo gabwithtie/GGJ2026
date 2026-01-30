@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteObstacleSpawner
   obstaclePrefabs:
-  - {fileID: 9191167835403720860, guid: b19a5070cc061f041ba3a3b99342c73a, type: 3}
+  - {fileID: 1665850474014416456, guid: 1607db8926f11d045bea78bdcf05e5af, type: 3}
   density: 9.46
   probability: 0.497
   spawnPosition: {x: 0, y: 2.2, z: 30.81}

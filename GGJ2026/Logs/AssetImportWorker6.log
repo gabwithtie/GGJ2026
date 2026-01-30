@@ -1002,3 +1002,153 @@ Memory consumption went from 153.0 MB to 148.6 MB.
 Total: 10.092400 ms (FindLiveObjects: 0.822300 ms CreateObjectMapping: 0.971400 ms MarkObjects: 5.909300 ms  DeleteObjects: 2.388200 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 1453.666993 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '26ccf5402bfc260715efbf1f8f591b41') in 0.7912743 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Import/Carl/Wooden Ramp.fbx
+  artifactKey: Guid(1b38b415c562cce458306cdd0f134d3f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Carl/Wooden Ramp.fbx using Guid(1b38b415c562cce458306cdd0f134d3f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'fcbb418a302ca9e27035891be8031ec9') in 0.1319089 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_MaskMap.png
+  artifactKey: Guid(7199d48f9fa285d40af763739efbc79b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_MaskMap.png using Guid(7199d48f9fa285d40af763739efbc79b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter)[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+ -> (artifact id: '1a49e9f7c64165df4d4c5b4a3a2e61de') in 0.0908607 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Prefabs/road types/Environment_Blocking (2).prefab
+  artifactKey: Guid(18098493f4e637c4692d6a86b537ac58) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/road types/Environment_Blocking (2).prefab using Guid(18098493f4e637c4692d6a86b537ac58) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '4e2639051c44b441ec295f8cc5219cd1') in 0.0218629 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Prefabs/road types/Environment_Blocking (1).prefab
+  artifactKey: Guid(938718fec651b7441be2819d4f76fdba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Prefabs/road types/Environment_Blocking (1).prefab using Guid(938718fec651b7441be2819d4f76fdba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'ff2211d09823610ac2ec351c0f85caa7') in 0.0181315 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 10
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_Specular.png
+  artifactKey: Guid(e334b859508680244bd58e742df77c3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_Specular.png using Guid(e334b859508680244bd58e742df77c3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '34253091c6142fcd4d0a03b639f7ba4a') in 0.0211515 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.315832 seconds.
+  path: Assets/Import/Carl/Shipping Container.fbx
+  artifactKey: Guid(c4f16df82b373d545978b875db476062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Carl/Shipping Container.fbx using Guid(c4f16df82b373d545978b875db476062) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '622239e3d49574996bf3528dde3fb210') in 0.6233023 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 15
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.447848 seconds.
+  path: Assets/Prefabs/Crate/crete.prefab
+  artifactKey: Guid(b19a5070cc061f041ba3a3b99342c73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Crate/crete.prefab using Guid(b19a5070cc061f041ba3a3b99342c73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd43c7a61fc746da5336f0c9ebb0769b2') in 0.0217729 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 30
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.330757 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_MaskMap.png
+  artifactKey: Guid(7199d48f9fa285d40af763739efbc79b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_MaskMap.png using Guid(7199d48f9fa285d40af763739efbc79b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '422f3307fdfa621fe07c67a08b5692e6') in 0.02022 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_Specular.png
+  artifactKey: Guid(e334b859508680244bd58e742df77c3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Crate Texture/Red/Shipping Container_DefaultMaterial_Specular.png using Guid(e334b859508680244bd58e742df77c3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '126519d1609cc2bb32874710c4e632ca') in 0.0251942 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.972877 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Green/Shipping Container_DefaultMaterial_MaskMap.png
+  artifactKey: Guid(901ecd6797d71954eb50057c6a0dcb0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Crate Texture/Green/Shipping Container_DefaultMaterial_MaskMap.png using Guid(901ecd6797d71954eb50057c6a0dcb0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ce5c69fea44cd134496eb6477a23c606') in 0.0196585 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Import/Lucky/Crate Texture/Green/Shipping Container_DefaultMaterial_Specular.png
+  artifactKey: Guid(46bcb07e1bf8ea84da5ca0a98b3d461d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Crate Texture/Green/Shipping Container_DefaultMaterial_Specular.png using Guid(46bcb07e1bf8ea84da5ca0a98b3d461d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '96abc65a5308e4b85d2215a3abf0ff4a') in 0.007861 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.987313 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Scenes/SampleScene.unity using Guid(99c9720ab356a0642a771bea13969a05) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'e5504e9fe6d481ef81678a8ef9bb6576') in 0.0192718 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 173.428982 seconds.
+  path: Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_MaskMap.png
+  artifactKey: Guid(f62f5011641547e4d8de377a10878a0f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_MaskMap.png using Guid(f62f5011641547e4d8de377a10878a0f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '9593dd5eabc7d1c6219d1c2ac0864db6') in 0.0304313 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Import/Lucky/Wood_Plank Substance.spp
+  artifactKey: Guid(ad4392c530e37674386c34636adf6f99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Lucky/Wood_Plank Substance.spp using Guid(ad4392c530e37674386c34636adf6f99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: '64f35a37e9ff5b99e25bfed4e5e48819') in 0.0138438 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_BaseMap.png
+  artifactKey: Guid(2c021146aa4c5a34a85054dd77d610cc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_BaseMap.png using Guid(2c021146aa4c5a34a85054dd77d610cc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (artifact id: 'd7196cf9cc082728400714b5e34d26c3') in 0.0229223 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.630585 seconds.
+  path: Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_MaskMap.png
+  artifactKey: Guid(f62f5011641547e4d8de377a10878a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_MaskMap.png using Guid(f62f5011641547e4d8de377a10878a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd7c2a95d37d3d0c3753f024a396b3661') in 0.0195508 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_Normal.png
+  artifactKey: Guid(312aba31ecb56c24a951fd3a06f758cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Import/Lucky/Plank_Texture/Wooden Ramp_DefaultMaterial_Normal.png using Guid(312aba31ecb56c24a951fd3a06f758cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '75ddf7395a621a86474af10c33f24749') in 0.015826 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
