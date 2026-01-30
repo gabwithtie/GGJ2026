@@ -10,18 +10,21 @@ namespace GabUnity
         [SerializeField] private LayerMask selectableLayer;
         [SerializeField] private Color selectionColor = new Color(0, 1, 0, 0.25f);
         [SerializeField] private Color borderColor = Color.green;
+        [SerializeField] private float detectionRadius = 150f; // Increased for safety
 
         [Header("Events")]
         public UnityEvent<List<Collider>> OnSelectionReleased;
+        public UnityEvent<Collider> OnSelectionEnter;
+        public UnityEvent<Collider> OnSelectionExit;
 
         private Vector2 startMousePos;
         private bool isSelecting = false;
         private Camera cam;
 
-        void Start()
-        {
-            cam = Camera.main;
-        }
+        private List<Collider> selectedColliders = new List<Collider>();
+        private Collider[] colcache = new Collider[512]; // Increased buffer size
+
+        void Start() => cam = Camera.main;
 
         void Update()
         {
@@ -29,46 +32,70 @@ namespace GabUnity
             {
                 isSelecting = true;
                 startMousePos = Input.mousePosition;
+                // Don't clear here if you want to keep highlights until release
             }
+
+            if (isSelecting) UpdateCollidersInSelection();
 
             if (Input.GetMouseButtonUp(0) && isSelecting)
             {
                 isSelecting = false;
-                List<Collider> selectedColliders = GetCollidersInSelection();
-
                 if (selectedColliders.Count > 0)
-                {
-                    OnSelectionReleased.Invoke(selectedColliders);
-                }
+                    OnSelectionReleased.Invoke(new List<Collider>(selectedColliders));
+
+                // Clear the state for the next drag
+                selectedColliders.Clear();
             }
         }
 
-        private List<Collider> GetCollidersInSelection()
+        private void UpdateCollidersInSelection()
         {
-            List<Collider> results = new List<Collider>();
             Rect selectionRect = GetScreenRect(startMousePos, Input.mousePosition);
 
-            // Find all colliders in the world that could potentially be selected
-            // You can optimize this by only checking colliders within a certain distance
-            Collider[] allColliders = Physics.OverlapSphere(cam.transform.position, 100f, selectableLayer);
+            // 1. Get everything in a large radius around the camera
+            int total_in = Physics.OverlapSphereNonAlloc(cam.transform.position, detectionRadius, colcache, selectableLayer);
 
-            foreach (var col in allColliders)
+            // 2. Determine what is inside the 2D Rect THIS frame
+            HashSet<Collider> currentFrameInside = new HashSet<Collider>();
+            for (int i = 0; i < total_in; i++)
             {
-                // Convert the world position of the object to screen space
-                Vector3 screenPos = cam.WorldToScreenPoint(col.transform.position);
+                var col = colcache[i];
+                if (col == null) continue; // Safety check
 
-                // If the screen point is inside our selection rectangle, add it to the list
-                // Note: WorldToScreenPoint returns Y from bottom, GUI uses Y from top. 
-                // We stay consistent with Screen Space (Y bottom-up) here.
-                if (selectionRect.Contains(screenPos))
+                Vector3 screenPos = cam.WorldToScreenPoint(col.bounds.center); // Use bounds.center for better accuracy
+
+                if (screenPos.z > 0 && selectionRect.Contains(screenPos))
                 {
-                    results.Add(col);
+                    currentFrameInside.Add(col);
                 }
             }
 
-            return results;
+            // 3. EXIT Logic: Was in the list, but not in the rect anymore
+            for (int i = selectedColliders.Count - 1; i >= 0; i--)
+            {
+                if (!currentFrameInside.Contains(selectedColliders[i]))
+                {
+                    OnSelectionExit.Invoke(selectedColliders[i]);
+                    selectedColliders.RemoveAt(i);
+                }
+            }
+
+            // 4. ENTER Logic: In the rect, but not in our list yet
+            foreach (var col in currentFrameInside)
+            {
+                if (!selectedColliders.Contains(col))
+                {
+                    selectedColliders.Add(col);
+                    OnSelectionEnter.Invoke(col);
+                }
+            }
+
+            // 5. CRITICAL: Clear the cache array references for the next frame 
+            // to avoid holding onto destroyed objects or old references
+            System.Array.Clear(colcache, 0, total_in);
         }
 
+        // ... [Keep GetScreenRect, OnGUI, and DrawRectBorder as they were] ...
         private Rect GetScreenRect(Vector2 start, Vector2 end)
         {
             return Rect.MinMaxRect(
@@ -81,32 +108,21 @@ namespace GabUnity
         {
             if (isSelecting)
             {
-                // GUI space has (0,0) at top-left, Screen space has (0,0) at bottom-left
-                // We must flip the Y coordinate for drawing
                 var rect = GetScreenRect(startMousePos, Input.mousePosition);
                 Rect guiRect = new Rect(rect.x, Screen.height - rect.yMax, rect.width, rect.height);
-
-                // Draw the box background
                 GUI.color = selectionColor;
                 GUI.DrawTexture(guiRect, Texture2D.whiteTexture);
-
-                // Draw the box border
                 GUI.color = borderColor;
                 DrawRectBorder(guiRect, 2f);
-
                 GUI.color = Color.white;
             }
         }
 
         private void DrawRectBorder(Rect rect, float thickness)
         {
-            // Top
             GUI.DrawTexture(new Rect(rect.x, rect.y, rect.width, thickness), Texture2D.whiteTexture);
-            // Bottom
             GUI.DrawTexture(new Rect(rect.x, rect.yMax - thickness, rect.width, thickness), Texture2D.whiteTexture);
-            // Left
             GUI.DrawTexture(new Rect(rect.x, rect.y, thickness, rect.height), Texture2D.whiteTexture);
-            // Right
             GUI.DrawTexture(new Rect(rect.xMax - thickness, rect.y, thickness, rect.height), Texture2D.whiteTexture);
         }
     }

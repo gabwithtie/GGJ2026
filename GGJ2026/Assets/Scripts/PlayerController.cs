@@ -59,12 +59,6 @@ namespace GabUnity
             HandleLaneMovement();
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            var upforce = 1.0f- collision.contacts[0].normal.y;
-            this.rb.AddForce(Vector3.up * upforce, ForceMode.Acceleration);
-        }
-
         private void OnCollisionStay(Collision collision)
         {
             isGrounded = true;
