@@ -10,19 +10,17 @@ namespace GabUnity
         [SerializeField] private LayerMask selectableLayer;
         [SerializeField] private Color selectionColor = new Color(0, 1, 0, 0.25f);
         [SerializeField] private Color borderColor = Color.green;
-        [SerializeField] private float detectionRadius = 150f; // Increased for safety
 
-        [Header("Events")]
-        public UnityEvent<List<Collider>> OnSelectionReleased;
-        public UnityEvent<Collider> OnSelectionEnter;
-        public UnityEvent<Collider> OnSelectionExit;
+        [Header("Cost Settings")]
+        [SerializeField] private float maxScreenCost = 2; // Cost if 100% of screen is selected
+        [SerializeField] private UnityEvent<float> OnChangeCost;
 
         private Vector2 startMousePos;
         private bool isSelecting = false;
         private Camera cam;
+        private float currentSelectionCost;
 
-        private List<Collider> selectedColliders = new List<Collider>();
-        private Collider[] colcache = new Collider[512]; // Increased buffer size
+        private List<MaskableCube> selectedColliders = new List<MaskableCube>();
 
         void Start() => cam = Camera.main;
 
@@ -32,70 +30,92 @@ namespace GabUnity
             {
                 isSelecting = true;
                 startMousePos = Input.mousePosition;
-                // Don't clear here if you want to keep highlights until release
             }
 
-            if (isSelecting) UpdateCollidersInSelection();
+            if (isSelecting)
+            {
+                UpdateCollidersInSelection();
+                currentSelectionCost = CalculateNormalizedCost();
+            }
 
             if (Input.GetMouseButtonUp(0) && isSelecting)
             {
                 isSelecting = false;
-                if (selectedColliders.Count > 0)
-                    OnSelectionReleased.Invoke(new List<Collider>(selectedColliders));
 
-                // Clear the state for the next drag
+                if (EnergyManager.TryUseEnergy(currentSelectionCost))
+                    foreach (var cube in selectedColliders) Destroy(cube.gameObject);
+                else
+                    foreach (var cube in selectedColliders) cube.OnHover(false);
+
                 selectedColliders.Clear();
+                currentSelectionCost = 0;
             }
+
+            OnChangeCost.Invoke(currentSelectionCost);
+        }
+
+        private float CalculateNormalizedCost()
+        {
+            Rect rect = GetScreenRect(startMousePos, Input.mousePosition);
+
+            // Calculate area of selection box in pixels
+            float selectionArea = rect.width * rect.height;
+
+            // Calculate total screen area in pixels
+            float screenArea = Screen.width * Screen.height;
+
+            // Normalize (0.0 to 1.0) and multiply by maxCost
+            float normalizedArea = selectionArea / screenArea;
+            return normalizedArea * maxScreenCost;
         }
 
         private void UpdateCollidersInSelection()
         {
             Rect selectionRect = GetScreenRect(startMousePos, Input.mousePosition);
+            HashSet<MaskableCube> currentFrameInside = new HashSet<MaskableCube>();
+            var allSelectables = MaskableCube.AllSelectables;
 
-            // 1. Get everything in a large radius around the camera
-            int total_in = Physics.OverlapSphereNonAlloc(cam.transform.position, detectionRadius, colcache, selectableLayer);
-
-            // 2. Determine what is inside the 2D Rect THIS frame
-            HashSet<Collider> currentFrameInside = new HashSet<Collider>();
-            for (int i = 0; i < total_in; i++)
+            for (int i = 0; i < allSelectables.Count; i++)
             {
-                var col = colcache[i];
-                if (col == null) continue; // Safety check
+                MaskableCube col = allSelectables[i];
+                if (col == null) continue;
 
-                Vector3 screenPos = cam.WorldToScreenPoint(col.bounds.center); // Use bounds.center for better accuracy
+                Vector3 screenPos = cam.WorldToScreenPoint(col._Collider.bounds.center);
 
-                if (screenPos.z > 0 && selectionRect.Contains(screenPos))
+                if (screenPos.z < 0 || !selectionRect.Contains(screenPos))
+                    continue;
+
+                // Occlusion check
+                var dir = col.transform.position - cam.transform.position;
+                if (Physics.Raycast(cam.transform.position, dir, out RaycastHit hit, Mathf.Infinity, selectableLayer, QueryTriggerInteraction.Collide))
                 {
-                    currentFrameInside.Add(col);
+                    if (hit.collider != col._Collider)
+                        continue;
                 }
+
+                currentFrameInside.Add(col);
             }
 
-            // 3. EXIT Logic: Was in the list, but not in the rect anymore
+            // Handle ENTER/EXIT logic
             for (int i = selectedColliders.Count - 1; i >= 0; i--)
             {
                 if (!currentFrameInside.Contains(selectedColliders[i]))
                 {
-                    OnSelectionExit.Invoke(selectedColliders[i]);
+                    selectedColliders[i].OnHover(false);
                     selectedColliders.RemoveAt(i);
                 }
             }
 
-            // 4. ENTER Logic: In the rect, but not in our list yet
             foreach (var col in currentFrameInside)
             {
                 if (!selectedColliders.Contains(col))
                 {
                     selectedColliders.Add(col);
-                    OnSelectionEnter.Invoke(col);
+                    col.OnHover(true);
                 }
             }
-
-            // 5. CRITICAL: Clear the cache array references for the next frame 
-            // to avoid holding onto destroyed objects or old references
-            System.Array.Clear(colcache, 0, total_in);
         }
 
-        // ... [Keep GetScreenRect, OnGUI, and DrawRectBorder as they were] ...
         private Rect GetScreenRect(Vector2 start, Vector2 end)
         {
             return Rect.MinMaxRect(
@@ -110,10 +130,18 @@ namespace GabUnity
             {
                 var rect = GetScreenRect(startMousePos, Input.mousePosition);
                 Rect guiRect = new Rect(rect.x, Screen.height - rect.yMax, rect.width, rect.height);
-                GUI.color = selectionColor;
+
+                // Visual feedback: change box color if too expensive
+                GUI.color = (EnergyManager.CurEnergy >= currentSelectionCost) ? selectionColor : new Color(1, 0, 0, 0.25f);
                 GUI.DrawTexture(guiRect, Texture2D.whiteTexture);
+
                 GUI.color = borderColor;
                 DrawRectBorder(guiRect, 2f);
+
+                // Show cost label next to mouse
+                GUI.Label(new Rect(Input.mousePosition.x + 10, Screen.height - Input.mousePosition.y, 150, 20),
+                    $"Cost: {currentSelectionCost:F0} / {EnergyManager.CurEnergy:F0}");
+
                 GUI.color = Color.white;
             }
         }

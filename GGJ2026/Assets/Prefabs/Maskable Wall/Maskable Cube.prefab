@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 8686469072671982106}
   - component: {fileID: 9090759323910322698}
   - component: {fileID: 7066949882371663532}
-  m_Layer: 0
+  - component: {fileID: 2943902161949850681}
+  - component: {fileID: -1546976042740003004}
+  m_Layer: 3
   m_Name: Maskable Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +110,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -155,3 +157,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2943902161949850681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828154803552020095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c45823d72bd1ff4ca27c9f824227c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.UnitIdentifier
+  _teamId: 0
+--- !u!114 &-1546976042740003004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828154803552020095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d9a18e3e0b0de42b688933f55cb11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.TriggerDamager
+  damage: 1

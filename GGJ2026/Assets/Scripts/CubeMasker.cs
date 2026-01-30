@@ -7,7 +7,7 @@ public class CubeMasker : MonoBehaviour
     {
         if (other.TryGetComponent(out MaskableCube maskableCube))
         {
-            maskableCube.OnHover(true);
+            
         }
     }
 
