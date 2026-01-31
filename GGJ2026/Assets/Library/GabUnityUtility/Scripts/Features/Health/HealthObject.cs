@@ -13,6 +13,8 @@ namespace GabUnity
         public float Health => health;
         public float MaxHealth => maxhealth;
 
+        public bool Alive => health > 0;
+
         [SerializeField] private bool DestroyOnDie = true;
 
         [SerializeField] private UnityEvent<float, UnitIdentifier> onDamageEvent;
@@ -31,6 +33,15 @@ namespace GabUnity
         public void Kill(UnitIdentifier source)
         {
             TakeDamage(health, source);
+        }
+
+        public void Heal(float amount)
+        {
+            if (!Alive)
+                return;
+
+            health += amount;
+            health = Mathf.Clamp(health, 0, maxhealth);
         }
 
         public void TakeDamage(float damage, UnitIdentifier source)

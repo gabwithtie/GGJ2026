@@ -3,9 +3,12 @@ using UnityEngine.InputSystem;
 
 namespace GabUnity
 {
-    [RequireComponent(typeof(Rigidbody), typeof(GroundChecker))]
+    [RequireComponent(typeof(Rigidbody), typeof(GroundChecker), typeof(HealthObject))]
     public class PlayerController : MonoBehaviour
     {
+        [Header("Balancing")]
+        [SerializeField] private float healingpersecond = 3.0f;
+
         [Header("Steering Settings")]
         [SerializeField] private float steeringSpeed = 20.0f;
         [SerializeField] private float horizontalDamping = 10.0f; // Higher damping for snappier kinematic feel
@@ -32,13 +35,18 @@ namespace GabUnity
         private float currentXVelocity; // Tracked for leaning visuals
         private float targetXPos;       // The "Virtual" X we want to be at
         private GroundChecker isGrounded;
+        private HealthObject healthobject;
 
         private float gravity;
         private float initialJumpVelocity;
 
         private void OnValidate() => CalculateJumpPhysics();
 
-        private void Awake() => isGrounded = GetComponent<GroundChecker>();
+        private void Awake()
+        {
+            healthobject = GetComponent<HealthObject>();
+            isGrounded = GetComponent<GroundChecker>();
+        }
 
         private void Start()
         {
@@ -57,7 +65,12 @@ namespace GabUnity
             initialJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         }
 
-        private void Update() => HandleVisualLean();
+        private void Update()
+        {
+            HandleVisualLean();
+
+            healthobject.Heal(healingpersecond * Time.deltaTime);
+        }
 
         private void FixedUpdate()
         {
@@ -67,6 +80,9 @@ namespace GabUnity
 
         private void HandleKinematicSteering()
         {
+            if (!healthobject.Alive)
+                return;
+
             // 1. Move the target X position based on input
             float inputX = inputDirection.x;
 

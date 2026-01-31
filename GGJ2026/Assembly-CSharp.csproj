@@ -121,6 +121,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\GroundChecker.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ManagerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\ActionRequest.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Camera\CameraShake.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioSourceExtensions.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Currency\CurrencyGenerator.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\UnitDetector.cs" />
