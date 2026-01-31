@@ -465,8 +465,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24579665, y: -0.0000000322978, z: 0.0000000081899465, w: 0.9693214}
-  m_LocalPosition: {x: 0, y: 11.35, z: -6.73}
+  m_LocalRotation: {x: 0.07343773, y: 0.0000000030778, z: -2.2663858e-10, w: 0.99729985}
+  m_LocalPosition: {x: 0, y: 9.15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -926,10 +926,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 3
 --- !u!114 &515289125
 MonoBehaviour:
@@ -1739,6 +1739,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &786386576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786386577}
+  - component: {fileID: 786386578}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786386577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786386576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1089650017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &786386578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786386576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0b84069891d7142b92ec344f7e7571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteObstacleSpawner
+  groundspawner: {fileID: 0}
+  obstacles:
+  - Name: maskable
+    Prefab: {fileID: 8031529597312868499, guid: 44ba76bb273ef4944aa4ed6fa6be6db1, type: 3}
+    Priority: 85
+    MinimumSelfGap: 70
+    MinimumGap: 2
+    NextObstaclePadding: 10
+    lastSpawnGlobalDist: 0
+  - Name: crate
+    Prefab: {fileID: 9191167835403720860, guid: b19a5070cc061f041ba3a3b99342c73a, type: 3}
+    Priority: 57
+    MinimumSelfGap: 3
+    MinimumGap: 3
+    NextObstaclePadding: 3
+    lastSpawnGlobalDist: 0
+  - Name: manhole
+    Prefab: {fileID: 5481117422007546622, guid: 06e8d66e86a159043a240daa346a880d, type: 3}
+    Priority: 18
+    MinimumSelfGap: 5
+    MinimumGap: 3
+    NextObstaclePadding: 1
+    lastSpawnGlobalDist: 0
+  density: 14.29
+  globalProbability: 0.5
+  spawnPosition: {x: 0, y: 0, z: 100}
+  startPosition: {x: 0, y: 0, z: 0}
+  _speed: 5
+  use_global: 1
+  direction: {x: 0, y: 0, z: -1}
+  deleteAtZ: -20
 --- !u!1 &801495312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2401,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1967779905}
+  - {fileID: 786386577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1194001239
@@ -2680,8 +2756,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341782573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24579662, y: -0.0000000322978, z: 0.000000008189946, w: 0.9693214}
-  m_LocalPosition: {x: 0, y: 11.35, z: -6.73}
+  m_LocalRotation: {x: 0.07343771, y: 0.0000000030777996, z: -2.2663858e-10, w: 0.99729985}
+  m_LocalPosition: {x: 0, y: 9.15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2705,7 +2781,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 7.7, z: -6.73}
+  FollowOffset: {x: 0, y: 5.5, z: -10}
 --- !u!114 &1341782577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3309,39 +3385,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93abef2449b299a4083d8c6c51fd448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerSpawner
-  prewarm_list:
-  - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-  - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-  - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-  - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
   objects:
-  - name: 
-    prefab: {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-    skipProbability: 0
-  - name: 
-    prefab: {fileID: 3150618121722991069, guid: 938718fec651b7441be2819d4f76fdba, type: 3}
-    skipProbability: 0
-  - name: 
-    prefab: {fileID: 2172874193106395865, guid: 18098493f4e637c4692d6a86b537ac58, type: 3}
-    skipProbability: 0
-  - name: 
-    prefab: {fileID: 7234130237315096601, guid: 19cb5713816362d4aab35692a93a39f6, type: 3}
-    skipProbability: 0
-  - name: 
-    prefab: {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-    skipProbability: 0.145
-  - name: 
-    prefab: {fileID: 3150618121722991069, guid: 938718fec651b7441be2819d4f76fdba, type: 3}
-    skipProbability: 0.222
-  - name: 
-    prefab: {fileID: 7247300493017184530, guid: 45dc244d404164d4c8d71eb677cdad40, type: 3}
-    skipProbability: 0.408
-  - name: 
-    prefab: {fileID: 7247300493017184530, guid: 45dc244d404164d4c8d71eb677cdad40, type: 3}
-    skipProbability: 0.377
-  - name: 
-    prefab: {fileID: 4803502190274235904, guid: ca86c200b09559c409290ee60a01247b, type: 3}
-    skipProbability: 0.408
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
+  - label: 
+    prefab: {fileID: 0}
+    canSpawnObstacles: 0
   width: 7.95
   spawnPosition: {x: 0, y: 0, z: 100}
   startPosition: {x: 0, y: 0, z: 0}
@@ -3385,7 +3456,7 @@ MonoBehaviour:
   selectionColor: {r: 0, g: 1, b: 0, a: 0.25}
   borderColor: {r: 0, g: 1, b: 0, a: 1}
   cost_per_block: 0.005
-  holdCost_persecond: 0.2
+  holdCost_persecond: 0.05
   OnChangeCost:
     m_PersistentCalls:
       m_Calls:

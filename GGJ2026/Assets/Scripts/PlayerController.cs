@@ -8,13 +8,13 @@ namespace GabUnity
     {
         [Header("Steering Settings")]
         [SerializeField] private float steeringSpeed = 20.0f;
-        [SerializeField] private float horizontalDamping = 5.0f;
+        [SerializeField] private float horizontalDamping = 10.0f; // Higher damping for snappier kinematic feel
         private float maxHorizontalRange => ((float)LaneManager.MaxLane + 0.5f) * LaneManager.LaneWidth;
 
         [Header("Obstacle Avoidance")]
         [SerializeField] private LayerMask obstacleLayer;
-        [SerializeField] private float sideRayLength = 0.8f; // Distance from center to check
-        [SerializeField] private float rayHeightOffset = 0.5f; // Cast above ground level
+        [SerializeField] private float sideRayLength = 0.8f;
+        [SerializeField] private float rayHeightOffset = 0.5f;
 
         [Header("Motorcycle Leaning")]
         [SerializeField] private Transform visuals;
@@ -29,7 +29,8 @@ namespace GabUnity
 
         private Rigidbody rb;
         private Vector2 inputDirection;
-        private float currentHorizontalVelocity;
+        private float currentXVelocity; // Tracked for leaning visuals
+        private float targetXPos;       // The "Virtual" X we want to be at
         private GroundChecker isGrounded;
 
         private float gravity;
@@ -43,7 +44,10 @@ namespace GabUnity
         {
             rb = GetComponent<Rigidbody>();
             rb.useGravity = false;
+            rb.isKinematic = false; // We use MovePosition on a non-kinematic RB for better collision interaction
             rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+            targetXPos = transform.position.x;
             CalculateJumpPhysics();
         }
 
@@ -57,60 +61,64 @@ namespace GabUnity
 
         private void FixedUpdate()
         {
-            HandleSmoothSteering();
+            HandleKinematicSteering();
             ApplyCustomGravity();
         }
 
-        private void HandleSmoothSteering()
+        private void HandleKinematicSteering()
         {
-            float targetVelocityX = inputDirection.x * steeringSpeed;
+            // 1. Move the target X position based on input
+            float inputX = inputDirection.x;
 
-            // --- Obstacle Avoidance Logic ---
-            targetVelocityX = CheckForObstacles(targetVelocityX);
-
-            currentHorizontalVelocity = Mathf.Lerp(currentHorizontalVelocity, targetVelocityX, Time.fixedDeltaTime * horizontalDamping);
-
-            Vector3 nextPos = rb.position + new Vector3(currentHorizontalVelocity * Time.fixedDeltaTime, 0, 0);
-            nextPos.x = Mathf.Clamp(nextPos.x, -maxHorizontalRange, maxHorizontalRange);
-
-            rb.MovePosition(nextPos);
-        }
-
-        private float CheckForObstacles(float targetVel)
-        {
-            // If not moving horizontally, no need to check
-            if (Mathf.Abs(targetVel) < 0.01f) return targetVel;
-
-            // Determine ray direction based on movement
-            Vector3 rayDir = (targetVel > 0) ? Vector3.right : Vector3.left;
-            Vector3 rayOrigin = transform.position + Vector3.up * rayHeightOffset;
-
-            // Draw ray for debugging in Scene View
-            Debug.DrawRay(rayOrigin, rayDir * sideRayLength, Color.red);
-
-            if (Physics.Raycast(rayOrigin, rayDir, out RaycastHit hit, sideRayLength, obstacleLayer))
+            // 2. Obstacle Check: If we are trying to move into a wall, don't move the targetX
+            if (IsBlockingSteer(inputX))
             {
-                // We hit something! Kill the velocity in that direction
-                return 0;
+                inputX = 0;
             }
 
-            return targetVel;
+            targetXPos += inputX * steeringSpeed * Time.fixedDeltaTime;
+            targetXPos = Mathf.Clamp(targetXPos, -maxHorizontalRange, maxHorizontalRange);
+
+            // 3. Smoothly move the Rigidbody to the target X
+            Vector3 currentPos = rb.position;
+            float newX = Mathf.Lerp(currentPos.x, targetXPos, Time.fixedDeltaTime * horizontalDamping);
+
+            // Calculate current velocity for the lean effect
+            currentXVelocity = (newX - currentPos.x) / Time.fixedDeltaTime;
+
+            // 4. Perform the actual Rigidbody Move
+            rb.MovePosition(new Vector3(newX, currentPos.y, currentPos.z));
+        }
+
+        private bool IsBlockingSteer(float inputX)
+        {
+            if (Mathf.Abs(inputX) < 0.01f) return false;
+
+            Vector3 rayDir = (inputX > 0) ? Vector3.right : Vector3.left;
+            Vector3 rayOrigin = transform.position + Vector3.up * rayHeightOffset;
+
+            Debug.DrawRay(rayOrigin, rayDir * sideRayLength, Color.red);
+            return Physics.Raycast(rayOrigin, rayDir, sideRayLength, obstacleLayer);
         }
 
         private void HandleVisualLean()
         {
             if (visuals == null) return;
-            float leanFactor = -currentHorizontalVelocity / steeringSpeed;
-            float targetAngle = leanFactor * maxLeanAngle;
+
+            // Lean is now based on how fast the MovePosition is actually shifting the player
+            float leanFactor = -currentXVelocity / steeringSpeed;
+            float targetAngle = Mathf.Clamp(leanFactor * maxLeanAngle, -maxLeanAngle, maxLeanAngle);
+
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
             visuals.localRotation = Quaternion.Slerp(visuals.localRotation, targetRotation, Time.deltaTime * leanSpeed);
         }
 
         private void ApplyCustomGravity()
         {
+            // We keep Y-axis physics dynamic so the player can fall and jump naturally
             if (isGrounded.Grounded && rb.linearVelocity.y <= 0)
             {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -0.1f, rb.linearVelocity.z);
+                rb.linearVelocity = new Vector3(0, -0.1f, 0);
                 return;
             }
 
@@ -121,10 +129,6 @@ namespace GabUnity
         public void OnMove(InputAction.CallbackContext context)
         {
             inputDirection = context.ReadValue<Vector2>();
-            if (inputDirection.y < -0.1f && !isGrounded.Grounded)
-            {
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -initialJumpVelocity * 1.5f, rb.linearVelocity.z);
-            }
         }
 
         public void ForceJump(float forcemult) => rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);

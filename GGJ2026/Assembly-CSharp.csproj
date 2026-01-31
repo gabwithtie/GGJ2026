@@ -157,11 +157,11 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\PlaySoundOnDie.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\TriggerForcer.cs" />
-    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteObstacleSpawner.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\UnitIdentifier.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueRequestHandler.cs" />
     <Compile Include="Assets\Scripts\GridGenerator.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\DestroyProbability.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\RotationSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Projectile\ProjectileManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SingletonResource.cs" />
@@ -1463,12 +1463,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InputSystem">

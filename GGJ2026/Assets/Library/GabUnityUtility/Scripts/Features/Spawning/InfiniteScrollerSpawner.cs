@@ -3,10 +3,19 @@ using System.Collections.Generic;
 
 namespace GabUnity
 {
+    [System.Serializable]
+    public struct ScrollerObjectData
+    {
+        public string name; // Added for easier debugging in inspector
+        public GameObject prefab;
+        [Range(0f, 1f)] public float skipProbability; // 0 = never skip, 1 = always skip
+    }
+
     public class InfiniteScrollerSpawner : MonoBehaviour
     {
         [Header("Spawn Settings")]
-        [SerializeField] private List<GameObject> objects;
+        [SerializeField] private List<GameObject> prewarm_list;
+        [SerializeField] private List<ScrollerObjectData> objects;
         [SerializeField] private float width = 10.0f;
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 startPosition;
@@ -15,26 +24,45 @@ namespace GabUnity
         [SerializeField] private float _speed = 5.0f;
         [SerializeField] private bool use_global = true;
         private float Speed => use_global ? InfiniteScrollerManager.ScrollSpeed : _speed;
-
         [SerializeField] private Vector3 direction = Vector3.back;
 
         [Header("Cleanup Settings")]
         [SerializeField] private float deleteAtZ = -20.0f;
 
+
         private GameObject last_spawned;
         private Queue<GameObject> activeObjects = new Queue<GameObject>();
+        private int cur_object_index = -1;
 
-        private int cur_object = 0;
+        private int prewarm_index = 0;
 
-        private GameObject GetObject() {
-            cur_object++;
-            cur_object %= objects.Count;
-            return objects[cur_object];
+        /// <summary>
+        /// Selects the next object, but skips to the next index if the probability roll fails.
+        /// </summary>
+        private ScrollerObjectData GetNextObjectData()
+        {
+            if (objects.Count == 0) return default;
+
+            while (true)
+            {
+                cur_object_index = (cur_object_index + 1) % objects.Count;
+                var candidate = objects[cur_object_index];
+
+                // Roll for skip. 
+                // If we roll a value higher than the probability, we keep it.
+                // Otherwise, the loop continues to the next index.
+                if (Random.value >= candidate.skipProbability)
+                {
+                    return candidate;
+                }
+
+                // Safety: if you accidentally set ALL objects to 1.0 skipProbability, 
+                // this loop would hang Unity. In a real project, add a counter break here.
+            }
         }
 
         private void Start()
         {
-            // Ensure direction is a unit vector for predictable math
             direction = direction.normalized;
             Prewarm();
         }
@@ -51,24 +79,24 @@ namespace GabUnity
             float totalDist = Vector3.Distance(startPosition, spawnPosition);
             int count = Mathf.CeilToInt(totalDist / width);
 
-            // 1. Spawn the "Head" (the leading edge)
-            SpawnObject(spawnPosition);
+            // Spawn the very first piece at the start position
+            var data = GetNextObjectData();
+            last_spawned = Instantiate(data.prefab, startPosition, Quaternion.identity);
+            activeObjects.Enqueue(last_spawned);
 
-            // 2. Fill BACKWARDS from the spawn point towards the start point
-            // We use -direction to place objects behind the head
-            for (int i = 0; i <= count; i++)
+            // Fill the rest up to the spawn point
+            for (int i = 0; i < count; i++)
             {
-                Vector3 pos = startPosition + (-direction * (i * width));
-                GameObject go = Instantiate(GetObject(), pos, Quaternion.identity);
-                activeObjects.Enqueue(go);
+                SpawnObject();
             }
         }
 
         private void HandleMovement()
         {
+            float frameMove = Speed * Time.deltaTime;
             foreach (GameObject obj in activeObjects)
             {
-                if (obj != null) obj.transform.position += direction * Speed * Time.deltaTime;
+                if (obj != null) obj.transform.position += direction * frameMove;
             }
         }
 
@@ -76,27 +104,34 @@ namespace GabUnity
         {
             if (last_spawned == null) return;
 
-            // Calculate current distance from spawn point
-            float currentDist = Vector3.Distance(spawnPosition, last_spawned.transform.position);
+            float currentSqrDist = Vector3.SqrMagnitude(spawnPosition - last_spawned.transform.position);
 
-            if (currentDist >= width)
+            if (currentSqrDist >= width * width)
             {
-                // SEAMLESS CORRECTION:
-                // Find exactly how much we overshot 'width' this frame
-                float overshootDist = currentDist - width;
-
-                // Place the new object exactly 'width' units away from the last one, 
-                // but accounting for the movement that happened this frame.
-                Vector3 newSpawnPos = spawnPosition + (direction * overshootDist);
-
-                SpawnObject(newSpawnPos);
+                SpawnObject();
             }
         }
 
-        private void SpawnObject(Vector3 pos)
+        private void SpawnObject()
         {
-            last_spawned = Instantiate(GetObject(), pos, Quaternion.identity);
-            activeObjects.Enqueue(last_spawned);
+            // Use the position of the last spawned object to ensure no gaps
+            float currentDist = Vector3.Distance(spawnPosition, last_spawned.transform.position);
+            float overshootDist = currentDist - width;
+            Vector3 newSpawnPos = spawnPosition + (direction * overshootDist);
+
+            if (prewarm_index < prewarm_list.Count)
+            {
+                last_spawned = Instantiate(prewarm_list[prewarm_index], newSpawnPos, Quaternion.identity);
+                activeObjects.Enqueue(last_spawned);
+
+                prewarm_index++;
+            }
+            else
+            {
+                var data = GetNextObjectData();
+                last_spawned = Instantiate(data.prefab, newSpawnPos, Quaternion.identity);
+                activeObjects.Enqueue(last_spawned);
+            }
         }
 
         private void HandleCleanup()
@@ -117,13 +152,9 @@ namespace GabUnity
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(spawnPosition, new Vector3(width, 1f, 0.1f));
+            Gizmos.DrawWireCube(spawnPosition, new Vector3(width, 0.5f, 0.1f));
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(startPosition, new Vector3(width, 1f, 0.1f));
-
-            // Show the "Prewarm Area"
-            Gizmos.color = new Color(1, 1, 0, 0.2f);
-            Gizmos.DrawLine(spawnPosition, startPosition);
+            Gizmos.DrawWireCube(startPosition, new Vector3(width, 0.5f, 0.1f));
         }
     }
 }

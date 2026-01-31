@@ -14,6 +14,9 @@ namespace GabUnity
 
         private void OnCollisionStay(Collision collision)
         {
+            if (collision.GetContact(0).normal.y < 0.6f)
+                return;
+
             if (!m_IsGrounded)
                 OnGround.Invoke();
 

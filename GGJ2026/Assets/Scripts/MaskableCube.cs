@@ -30,7 +30,8 @@ public class MaskableCube : MonoBehaviour
 
     private void Start()
     {
-        OnHover(!start_active);
+        OnHover(false);
+        _collider.enabled = start_active;
     }
 
     public void OnHover(bool what)
