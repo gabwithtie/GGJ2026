@@ -124,6 +124,11 @@ namespace GabUnity
             }
         }
 
+        public void ForceJump(float forcemult)
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);
+        }
+
         public void OnJump(InputAction.CallbackContext context)
         {
             if (context.performed && isGrounded)
