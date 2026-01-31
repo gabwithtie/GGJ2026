@@ -11,8 +11,13 @@ namespace GabUnity
         [SerializeField] private float horizontalDamping = 5.0f;
         private float maxHorizontalRange => ((float)LaneManager.MaxLane + 0.5f) * LaneManager.LaneWidth;
 
+        [Header("Obstacle Avoidance")]
+        [SerializeField] private LayerMask obstacleLayer;
+        [SerializeField] private float sideRayLength = 0.8f; // Distance from center to check
+        [SerializeField] private float rayHeightOffset = 0.5f; // Cast above ground level
+
         [Header("Motorcycle Leaning")]
-        [SerializeField] private Transform visuals; // Assign your mesh child object here
+        [SerializeField] private Transform visuals;
         [SerializeField] private float maxLeanAngle = 35.0f;
         [SerializeField] private float leanSpeed = 10.0f;
 
@@ -25,7 +30,6 @@ namespace GabUnity
         private Rigidbody rb;
         private Vector2 inputDirection;
         private float currentHorizontalVelocity;
-        private float currentLeanVelocity;
         private GroundChecker isGrounded;
 
         private float gravity;
@@ -33,17 +37,13 @@ namespace GabUnity
 
         private void OnValidate() => CalculateJumpPhysics();
 
-        private void Awake()
-        {
-            isGrounded = GetComponent<GroundChecker>();
-        }
+        private void Awake() => isGrounded = GetComponent<GroundChecker>();
 
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
             rb.useGravity = false;
-            rb.interpolation = RigidbodyInterpolation.Interpolate; // Important for smooth visuals
-
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
             CalculateJumpPhysics();
         }
 
@@ -53,10 +53,7 @@ namespace GabUnity
             initialJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         }
 
-        private void Update()
-        {
-            HandleVisualLean();
-        }
+        private void Update() => HandleVisualLean();
 
         private void FixedUpdate()
         {
@@ -66,28 +63,45 @@ namespace GabUnity
 
         private void HandleSmoothSteering()
         {
-            // 1. Calculate target velocity based on input
             float targetVelocityX = inputDirection.x * steeringSpeed;
 
-            // 2. Smoothly move current velocity toward target
+            // --- Obstacle Avoidance Logic ---
+            targetVelocityX = CheckForObstacles(targetVelocityX);
+
             currentHorizontalVelocity = Mathf.Lerp(currentHorizontalVelocity, targetVelocityX, Time.fixedDeltaTime * horizontalDamping);
 
-            // 3. Apply velocity while clamping position to the road boundaries
             Vector3 nextPos = rb.position + new Vector3(currentHorizontalVelocity * Time.fixedDeltaTime, 0, 0);
             nextPos.x = Mathf.Clamp(nextPos.x, -maxHorizontalRange, maxHorizontalRange);
 
             rb.MovePosition(nextPos);
         }
 
+        private float CheckForObstacles(float targetVel)
+        {
+            // If not moving horizontally, no need to check
+            if (Mathf.Abs(targetVel) < 0.01f) return targetVel;
+
+            // Determine ray direction based on movement
+            Vector3 rayDir = (targetVel > 0) ? Vector3.right : Vector3.left;
+            Vector3 rayOrigin = transform.position + Vector3.up * rayHeightOffset;
+
+            // Draw ray for debugging in Scene View
+            Debug.DrawRay(rayOrigin, rayDir * sideRayLength, Color.red);
+
+            if (Physics.Raycast(rayOrigin, rayDir, out RaycastHit hit, sideRayLength, obstacleLayer))
+            {
+                // We hit something! Kill the velocity in that direction
+                return 0;
+            }
+
+            return targetVel;
+        }
+
         private void HandleVisualLean()
         {
             if (visuals == null) return;
-
-            // Calculate lean amount based on current horizontal movement (-1 to 1)
-            float leanFactor = -currentHorizontalVelocity / steeringSpeed; // Negative because tilting left leans left
+            float leanFactor = -currentHorizontalVelocity / steeringSpeed;
             float targetAngle = leanFactor * maxLeanAngle;
-
-            // Smoothly rotate the visual child object
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
             visuals.localRotation = Quaternion.Slerp(visuals.localRotation, targetRotation, Time.deltaTime * leanSpeed);
         }
@@ -96,7 +110,7 @@ namespace GabUnity
         {
             if (isGrounded.Grounded && rb.linearVelocity.y <= 0)
             {
-                rb.linearVelocity = new Vector3(0, -0.1f, 0); // Stick to ground
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -0.1f, rb.linearVelocity.z);
                 return;
             }
 
@@ -107,18 +121,13 @@ namespace GabUnity
         public void OnMove(InputAction.CallbackContext context)
         {
             inputDirection = context.ReadValue<Vector2>();
-
-            // Slam mechanic: Downward swipe/key
             if (inputDirection.y < -0.1f && !isGrounded.Grounded)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, -initialJumpVelocity * 1.5f, rb.linearVelocity.z);
             }
         }
 
-        public void ForceJump(float forcemult)
-        {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);
-        }
+        public void ForceJump(float forcemult) => rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);
 
         public void OnJump(InputAction.CallbackContext context)
         {
