@@ -118,6 +118,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\GlobalVolumeWeightLerper.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusAnimation.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioOneShotter.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\GroundChecker.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ManagerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\ActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioSourceExtensions.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\ISingleton.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\TrackSwitcher.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\AnimatorBoolSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\GenericActionRequestHandler.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\EffectController.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Input\PointerCatcher.cs" />

@@ -13,7 +13,7 @@ namespace GabUnity
         [SerializeField] private Color borderColor = Color.green;
 
         [Header("Cost Settings")]
-        [SerializeField] private float maxScreenCost = 2;
+        [SerializeField] private float cost_per_block = 0.05f;
         [SerializeField] private float holdCost_persecond = 2;
         [SerializeField] private UnityEvent<float> OnChangeCost;
         [SerializeField] private UnityEvent OnStartDrag;
@@ -100,10 +100,7 @@ namespace GabUnity
 
         private float CalculateNormalizedCost()
         {
-            Rect rect = GetScreenRect(startMousePos, currentMousePos);
-            float selectionArea = rect.width * rect.height;
-            float screenArea = Screen.width * Screen.height;
-            return (selectionArea / screenArea) * maxScreenCost;
+            return selectedColliders.Count * cost_per_block;
         }
 
         private void UpdateCollidersInSelection()

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace GabUnity
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(isGrounded.Grounded))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Steering Settings")]
@@ -22,20 +22,21 @@ namespace GabUnity
         [Range(1f, 10f)][SerializeField] private float upwardGravityMultiplier = 2f;
         [Range(1f, 10f)][SerializeField] private float downwardGravityMultiplier = 4f;
 
-        [Header("Detection")]
-        [SerializeField] private LayerMask groundMask;
-        [SerializeField] private float groundCheckRadius = 0.25f;
-
         private Rigidbody rb;
         private Vector2 inputDirection;
         private float currentHorizontalVelocity;
         private float currentLeanVelocity;
-        [SerializeField] private bool isGrounded;
+        private GroundChecker isGrounded;
 
         private float gravity;
         private float initialJumpVelocity;
 
         private void OnValidate() => CalculateJumpPhysics();
+
+        private void Awake()
+        {
+            isGrounded = GetComponent<GroundChecker>();
+        }
 
         private void Start()
         {
@@ -61,16 +62,6 @@ namespace GabUnity
         {
             HandleSmoothSteering();
             ApplyCustomGravity();
-        }
-
-        private void OnCollisionStay(Collision collision)
-        {
-            isGrounded = true;
-        }
-
-        private void OnCollisionExit(Collision collision)
-        {
-            isGrounded = false;
         }
 
         private void HandleSmoothSteering()
@@ -103,7 +94,7 @@ namespace GabUnity
 
         private void ApplyCustomGravity()
         {
-            if (isGrounded && rb.linearVelocity.y <= 0)
+            if (isGrounded.Grounded && rb.linearVelocity.y <= 0)
             {
                 rb.linearVelocity = new Vector3(0, -0.1f, 0); // Stick to ground
                 return;
@@ -118,7 +109,7 @@ namespace GabUnity
             inputDirection = context.ReadValue<Vector2>();
 
             // Slam mechanic: Downward swipe/key
-            if (inputDirection.y < -0.1f && !isGrounded)
+            if (inputDirection.y < -0.1f && !isGrounded.Grounded)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, -initialJumpVelocity * 1.5f, rb.linearVelocity.z);
             }
@@ -131,16 +122,10 @@ namespace GabUnity
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (context.performed && isGrounded)
+            if (context.performed && isGrounded.Grounded)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity, rb.linearVelocity.z);
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = isGrounded ? Color.green : Color.red;
-            Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.1f, groundCheckRadius);
         }
     }
 }
