@@ -14,7 +14,7 @@ namespace GabUnity
         }
 
         [SerializeField] private List<GenericActionRequestEvent> request_events = new();
-
+        [SerializeField] private float _delay;
 
         private void Awake()
         {
@@ -26,20 +26,36 @@ namespace GabUnity
             ActionRequestManager.UnregisterHandler(request_events[0].listening_for.GetType(), this);
         }
 
-        public override bool Request(ActionRequest somerequest)
+        private ActionRequest somerequest;
+
+        public override bool Request(ActionRequest _somerequest)
         {
             bool atleastone = false;
-
-            foreach(var request_event in request_events)
+            foreach (var request_event in request_events)
             {
-                if(somerequest == request_event.listening_for)
+                if (somerequest == request_event.listening_for)
                 {
                     request_event.onRequest.Invoke();
+
                     atleastone = true;
                 }
             }
 
+            somerequest = _somerequest;
+            Invoke(nameof(Commit), _delay);
             return atleastone;
+        }
+
+        public void Commit()
+        {
+            foreach (var request_event in request_events)
+            {
+                if (somerequest == request_event.listening_for)
+                {
+                    request_event.onRequest.Invoke();
+                }
+            }
+            
         }
     }
 }

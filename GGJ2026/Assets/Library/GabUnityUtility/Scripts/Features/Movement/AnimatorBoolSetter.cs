@@ -7,6 +7,7 @@ namespace GabUnity
     public class AnimatorBoolSetter : MonoBehaviour
     {
         [SerializeField] private string label;
+        [SerializeField] private bool trigger_mode;
 
         private Animator animator;
 
@@ -17,6 +18,15 @@ namespace GabUnity
 
         public void SetBool(bool towhat)
         {
+            if (trigger_mode)
+            {
+                if (towhat)
+                    animator.SetTrigger(label);
+                else
+                    animator.ResetTrigger(label);
+
+                return;
+            }
             animator.SetBool(label, towhat);
         }
     }

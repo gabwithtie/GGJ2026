@@ -1,18 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 
 namespace GabUnity
 {
     [System.Serializable]
     public struct ScrollerObjectData
     {
-        public string name;
-        public GameObject prefab;
-        [Tooltip("0 = Easy, 1 = Medium, 2 = Hard")]
-        public int difficultyRating; //
-        [Tooltip("Relative chance to spawn compared to others in the same difficulty pool")]
-        public float baseWeight;
+        public List<GameObject> prefabs;
+        public int easy_minimum_space;
+        public int hard_minimum_space;
+
+        public int last_spawn;
+
+        public int Get_minimumSpace(float diff)
+        {
+            return Mathf.RoundToInt(Mathf.Lerp(easy_minimum_space, hard_minimum_space, diff));
+        }
     }
 
     public class InfiniteScrollerSpawner : MonoBehaviour
@@ -23,6 +28,7 @@ namespace GabUnity
         [SerializeField] private float width = 10.0f;
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 startPosition;
+        [SerializeField] private float currentDiff;
 
         [Header("Movement Settings")]
         [SerializeField] private float _speed = 5.0f;
@@ -33,63 +39,9 @@ namespace GabUnity
         [Header("Cleanup Settings")]
         [SerializeField] private float deleteAtZ = -20.0f;
 
-        [Header("Difficulty Scaling")]
-        [SerializeField] private int hardCooldownSegments = 3; //
-        private int _currentHardCooldown = 0; //
-
         private GameObject last_spawned;
         private Queue<GameObject> activeObjects = new Queue<GameObject>();
         private int prewarm_index = 0;
-
-        /// <summary>
-        /// Selects the next object based on weighted probability and current difficulty ceiling.
-        /// </summary>
-        private ScrollerObjectData GetNextObjectWeighted()
-        {
-            if (objects.Count == 0) return default;
-
-            // 1. Determine max allowed difficulty based on current speed
-            int maxDifficulty = 0;
-            if (Speed > 15f) maxDifficulty = 2;      // Hard segments unlocked
-            else if (Speed > 8f) maxDifficulty = 1;   // Medium segments unlocked
-
-            // 2. Filter eligible objects based on difficulty and hard-cooldown
-            var eligible = new List<ScrollerObjectData>();
-            foreach (var obj in objects)
-            {
-                if (obj.difficultyRating <= maxDifficulty)
-                {
-                    // Skip hard objects if we are currently in a cooldown period
-                    if (obj.difficultyRating == 2 && _currentHardCooldown > 0) continue;
-                    eligible.Add(obj);
-                }
-            }
-
-            // Fallback if filtering left us empty
-            if (eligible.Count == 0) eligible.Add(objects[0]);
-
-            // 3. Weighted Random Selection
-            float totalWeight = eligible.Sum(x => x.baseWeight);
-            float roll = Random.Range(0, totalWeight);
-            float cursor = 0;
-
-            foreach (var candidate in eligible)
-            {
-                cursor += candidate.baseWeight;
-                if (cursor >= roll)
-                {
-                    // 4. Update Hard Object Cooldown
-                    if (candidate.difficultyRating == 2)
-                        _currentHardCooldown = hardCooldownSegments;
-                    else if (_currentHardCooldown > 0)
-                        _currentHardCooldown--;
-
-                    return candidate;
-                }
-            }
-
-            return eligible[0];
-        }
 
         private void Start()
         {
@@ -102,6 +54,65 @@ namespace GabUnity
             HandleMovement();
             HandleSpawning();
             HandleCleanup();
+        }
+
+        private GameObject GetNext()
+        {
+            if (objects == null || objects.Count == 0) return null;
+
+
+            // 2. Increment 'last_spawn' for all groups to track distance
+            for (int i = 0; i < objects.Count; i++)
+            {
+                var temp = objects[i];
+                temp.last_spawn++;
+                objects[i] = temp;
+            }
+
+            // 3. Find all groups that have waited long enough
+            List<int> eligibleIndices = new List<int>();
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (objects[i].last_spawn >= objects[i].Get_minimumSpace(currentDiff))
+                {
+                    eligibleIndices.Add(i);
+                }
+            }
+
+            int selectedIndex = 0;
+
+            // 4. Select a group
+            if (eligibleIndices.Count > 0)
+            {
+                // Pick a random group from the eligible pool
+                selectedIndex = eligibleIndices[Random.Range(0, eligibleIndices.Count)];
+            }
+            else
+            {
+                // Fallback: If no groups are ready, pick the one that has been waiting the longest
+                int longestWait = -1;
+                for (int i = 0; i < objects.Count; i++)
+                {
+                    if (objects[i].last_spawn > longestWait)
+                    {
+                        longestWait = objects[i].last_spawn;
+                        selectedIndex = i;
+                    }
+                }
+            }
+
+            // 5. Reset the counter for the selected group
+            var selectedData = objects[selectedIndex];
+            selectedData.last_spawn = 0;
+            objects[selectedIndex] = selectedData;
+
+            // 6. Return a random prefab from that specific group
+            if (selectedData.prefabs != null && selectedData.prefabs.Count > 0)
+            {
+                return selectedData.prefabs[Random.Range(0, selectedData.prefabs.Count)];
+            }
+
+            return null;
         }
 
         private void Prewarm()
@@ -147,7 +158,10 @@ namespace GabUnity
 
         private void SpawnObject()
         {
-            float currentDist = Vector3.Distance(spawnPosition, last_spawned.transform.position);
+            float currentDist = 0;
+            if (last_spawned != null)
+                currentDist = Vector3.Distance(spawnPosition, last_spawned.transform.position);
+
             float overshootDist = currentDist - width;
             Vector3 newSpawnPos = spawnPosition + (direction * overshootDist);
 
@@ -160,8 +174,8 @@ namespace GabUnity
             else
             {
                 // Use the new weighted selection instead of simple indexing
-                var data = GetNextObjectWeighted();
-                last_spawned = Instantiate(data.prefab, newSpawnPos, Quaternion.identity);
+                var data = GetNext();
+                last_spawned = Instantiate(data, newSpawnPos, Quaternion.identity);
                 activeObjects.Enqueue(last_spawned);
             }
         }
