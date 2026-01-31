@@ -128,8 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cca40f3c035d143a5e52c03205ea40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskableCube
-  defualt_mat: {fileID: 2100000, guid: 8e813b47dcae64d4d97e03667963465e, type: 2}
+  defualt_mat: {fileID: 2100000, guid: a93836cfa8bd5ac478bd4ae0ef13c54b, type: 2}
   highlighted_mat: {fileID: 2100000, guid: f2b48e7fb918f454d999a732f86574b6, type: 2}
+  shader_t_speed: 3
+  shader_t_name: _Diagonal_Mask
 --- !u!54 &7066949882371663532
 Rigidbody:
   m_ObjectHideFlags: 0

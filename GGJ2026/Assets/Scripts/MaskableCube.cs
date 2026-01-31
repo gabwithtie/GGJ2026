@@ -25,6 +25,11 @@ public class MaskableCube : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();   
     }
 
+    private void Start()
+    {
+        OnHover(false);
+    }
+
     public void OnHover(bool what)
     {
         meshRenderer.sharedMaterial = what ? highlighted_mat : defualt_mat;
@@ -33,6 +38,7 @@ public class MaskableCube : MonoBehaviour
     public void CommitDisable()
     {
         _collider.enabled = false;
+        OnHover(false);
     }
 
     private void Update()
@@ -46,7 +52,7 @@ public class MaskableCube : MonoBehaviour
             shader_t -= Time.deltaTime * shader_t_speed;
         }
 
-        shader_t = Mathf.Clamp01(shader_t);
+        shader_t = Mathf.Clamp(shader_t, 0.01f, 1);
 
         meshRenderer.material.SetFloat(shader_t_name, shader_t);
     }

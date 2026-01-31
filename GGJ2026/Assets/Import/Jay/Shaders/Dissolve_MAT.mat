@@ -46,8 +46,8 @@ Material:
     - _Diagonal_Dissolve: 1.1
     - _Diagonal_Mask: 1
     - _Dissolve_Amount: 0
-    - _Dissolve_Outline: 0.03
-    - _Dissolve_Scale: 30
+    - _Dissolve_Outline: 0.2
+    - _Dissolve_Scale: 2
     - _Noise_Scale: 20
     - _Noise_Strength: 1
     - _QueueControl: 0
