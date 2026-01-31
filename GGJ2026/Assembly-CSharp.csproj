@@ -159,6 +159,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\ConsistentDataHolder.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\PlaySoundOnDie.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\ChooseOneDestroyOther.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\TriggerForcer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\UnitIdentifier.cs" />

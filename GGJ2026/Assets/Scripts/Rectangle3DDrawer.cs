@@ -121,7 +121,10 @@ namespace GabUnity
                 var dir = col.transform.position - cam.transform.position;
                 if (Physics.Raycast(cam.transform.position, dir, out RaycastHit hit, Mathf.Infinity, selectableLayer, QueryTriggerInteraction.Collide))
                 {
-                    if (hit.collider != col._Collider) continue;
+                    var same_z = Mathf.Abs(hit.collider.transform.position.z - col.transform.position.z) < 0.3f;
+                    if (hit.collider != col._Collider)
+                        if (!same_z)
+                            continue;
                 }
                 currentFrameInside.Add(col);
             }
