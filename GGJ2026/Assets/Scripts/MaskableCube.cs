@@ -8,6 +8,7 @@ public class MaskableCube : MonoBehaviour
     void OnEnable() => AllSelectables.Add(this);
     void OnDisable() => AllSelectables.Remove(this);
 
+    [SerializeField] private bool start_active = true;
     [SerializeField] private Material defualt_mat;
     [SerializeField] private Material highlighted_mat;
     [SerializeField] private float shader_t_speed = 1;
@@ -18,6 +19,8 @@ public class MaskableCube : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     private float shader_t = 0;
+    bool committed = false;
+    public bool Committed => committed;
 
     private void Awake()
     {
@@ -27,7 +30,7 @@ public class MaskableCube : MonoBehaviour
 
     private void Start()
     {
-        OnHover(false);
+        OnHover(!start_active);
     }
 
     public void OnHover(bool what)
@@ -35,9 +38,10 @@ public class MaskableCube : MonoBehaviour
         meshRenderer.sharedMaterial = what ? highlighted_mat : defualt_mat;
     }
 
-    public void CommitDisable()
+    public void CommitEdit()
     {
-        _collider.enabled = false;
+        _collider.enabled = !start_active;
+        committed = true;
         OnHover(false);
     }
 

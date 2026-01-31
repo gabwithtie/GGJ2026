@@ -848,7 +848,7 @@ MonoBehaviour:
   visuals: {fileID: 300116213}
   maxLeanAngle: 20
   leanSpeed: 15
-  jumpHeight: 3
+  jumpHeight: 5
   timeToJumpApex: 0.5
   upwardGravityMultiplier: 1.42
   downwardGravityMultiplier: 1.78
@@ -945,9 +945,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 515289119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c284f67b566aa1b48b5a36fb61126257, type: 3}
+  m_Script: {fileID: 11500000, guid: a1dd4326cfb67764782c8fb4d0040996, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.IsGrounded
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.GroundChecker
   m_IsGrounded: 0
   OnGround:
     m_PersistentCalls:
@@ -1311,11 +1311,12 @@ RectTransform:
   m_Children:
   - {fileID: 483402379}
   - {fileID: 722597361}
+  - {fileID: 915363460}
   m_Father: {fileID: 734788719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -318.31}
+  m_AnchoredPosition: {x: 1000, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &673589832
@@ -1332,7 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.MoveablePanel
   isOpen: 0
   anchoredpos_open: {x: 0, y: 0}
-  anchoredpos_closed: {x: 0, y: -318.31}
+  anchoredpos_closed: {x: 1000, y: 0}
   move_duration: 0.2
   t_ease: 2
 --- !u!222 &673589833
@@ -1963,7 +1964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnergyManager
   cur_energy: 1
-  refil_per_sec: 0.05
+  refil_per_sec: 0.04
   onChangeEnergy:
     m_PersistentCalls:
       m_Calls:
@@ -1979,6 +1980,81 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &915363459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 915363460}
+  - component: {fileID: 915363462}
+  - component: {fileID: 915363461}
+  m_Layer: 5
+  m_Name: main image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &915363460
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915363459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 673589831}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 52.86}
+  m_SizeDelta: {x: 1200, y: 1200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &915363461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915363459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1c1c9385b352f88438c00f9fd48dcad5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &915363462
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915363459}
+  m_CullTransparentMesh: 1
 --- !u!1 &1003415592
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,8 +3305,8 @@ MonoBehaviour:
     m_Bits: 8
   selectionColor: {r: 0, g: 1, b: 0, a: 0.25}
   borderColor: {r: 0, g: 1, b: 0, a: 1}
-  cost_per_block: 0.05
-  holdCost_persecond: 0.4
+  cost_per_block: 0.005
+  holdCost_persecond: 0.05
   OnChangeCost:
     m_PersistentCalls:
       m_Calls:

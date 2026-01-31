@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace GabUnity
 {
-    [RequireComponent(typeof(Rigidbody), typeof(isGrounded.Grounded))]
+    [RequireComponent(typeof(Rigidbody), typeof(GroundChecker))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Steering Settings")]

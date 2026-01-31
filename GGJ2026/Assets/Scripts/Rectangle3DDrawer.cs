@@ -80,7 +80,7 @@ namespace GabUnity
             isSelecting = false;
 
             if (EnergyManager.TryUseEnergy(currentSelectionCost))
-                foreach (var cube in selectedColliders) cube.CommitDisable();
+                foreach (var cube in selectedColliders) cube.CommitEdit();
             else
                 foreach (var cube in selectedColliders) cube.OnHover(false);
 
@@ -113,6 +113,7 @@ namespace GabUnity
             {
                 MaskableCube col = allSelectables[i];
                 if (col == null) continue;
+                if (col.Committed) continue;
 
                 Vector3 screenPos = cam.WorldToScreenPoint(col._Collider.bounds.center);
                 if (screenPos.z < 0 || !selectionRect.Contains(screenPos)) continue;
