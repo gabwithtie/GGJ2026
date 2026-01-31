@@ -2171,13 +2171,20 @@ MonoBehaviour:
   objects:
   - name: 
     prefab: {fileID: 8236769848598645588, guid: 49441e98dfa045e42bbbcd9e66dd34c4, type: 3}
-    skipProbability: 0.313
+    difficultyRating: 0
+    baseWeight: 0
   - name: 
     prefab: {fileID: 5384686374987775631, guid: 53de4efedd98e1940b19046579f947bb, type: 3}
-    skipProbability: 0.313
+    difficultyRating: 0
+    baseWeight: 0
   - name: 
     prefab: {fileID: 8061910763357796361, guid: c6f34ac857d8fd8498231a8ee781be57, type: 3}
-    skipProbability: 0.378
+    difficultyRating: 0
+    baseWeight: 0
+  - name: 
+    prefab: {fileID: 8061910763357796361, guid: 91b670c10e2237b4cadd5f8608197d30, type: 3}
+    difficultyRating: 0
+    baseWeight: 0
   width: 16
   spawnPosition: {x: -40, y: 0, z: 300}
   startPosition: {x: -40, y: 0, z: 0}
@@ -2185,6 +2192,7 @@ MonoBehaviour:
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
   deleteAtZ: -10
+  hardCooldownSegments: 3
 --- !u!1 &915363459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3510,35 +3518,35 @@ MonoBehaviour:
   - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
   - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
   - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-  - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
   objects:
   - name: 
     prefab: {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-    skipProbability: 0
+    difficultyRating: 0
+    baseWeight: 0
   - name: 
     prefab: {fileID: 3150618121722991069, guid: 938718fec651b7441be2819d4f76fdba, type: 3}
-    skipProbability: 0
+    difficultyRating: 1
+    baseWeight: 0
   - name: 
     prefab: {fileID: 2172874193106395865, guid: 18098493f4e637c4692d6a86b537ac58, type: 3}
-    skipProbability: 0
+    difficultyRating: 1
+    baseWeight: 1
   - name: 
     prefab: {fileID: 7234130237315096601, guid: 19cb5713816362d4aab35692a93a39f6, type: 3}
-    skipProbability: 0.204
+    difficultyRating: 1
+    baseWeight: 0
   - name: 
-    prefab: {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
-    skipProbability: 0.225
-  - name: 
-    prefab: {fileID: 3150618121722991069, guid: 938718fec651b7441be2819d4f76fdba, type: 3}
-    skipProbability: 0.251
-  - name: 
-    prefab: {fileID: 7247300493017184530, guid: 45dc244d404164d4c8d71eb677cdad40, type: 3}
-    skipProbability: 0.408
+    prefab: {fileID: 7234130237315096601, guid: 0e7963df2d2f15e4e9ad76fe5139f205, type: 3}
+    difficultyRating: 2
+    baseWeight: 0
   - name: 
     prefab: {fileID: 7247300493017184530, guid: 45dc244d404164d4c8d71eb677cdad40, type: 3}
-    skipProbability: 0.377
+    difficultyRating: 1
+    baseWeight: 1
   - name: 
     prefab: {fileID: 4803502190274235904, guid: ca86c200b09559c409290ee60a01247b, type: 3}
-    skipProbability: 0.408
+    difficultyRating: 2
+    baseWeight: 0
   width: 7.95
   spawnPosition: {x: 0, y: 0, z: 100}
   startPosition: {x: 0, y: 0, z: 0}
@@ -3546,6 +3554,7 @@ MonoBehaviour:
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
   deleteAtZ: -10
+  hardCooldownSegments: 3
 --- !u!1 &2060686610
 GameObject:
   m_ObjectHideFlags: 0
@@ -3594,13 +3603,20 @@ MonoBehaviour:
   objects:
   - name: 
     prefab: {fileID: 8236769848598645588, guid: 49441e98dfa045e42bbbcd9e66dd34c4, type: 3}
-    skipProbability: 0.313
+    difficultyRating: 0
+    baseWeight: 0
   - name: 
     prefab: {fileID: 5384686374987775631, guid: 53de4efedd98e1940b19046579f947bb, type: 3}
-    skipProbability: 0.313
+    difficultyRating: 0
+    baseWeight: 0
   - name: 
     prefab: {fileID: 8061910763357796361, guid: c6f34ac857d8fd8498231a8ee781be57, type: 3}
-    skipProbability: 0.378
+    difficultyRating: 0
+    baseWeight: 0
+  - name: 
+    prefab: {fileID: 8061910763357796361, guid: 91b670c10e2237b4cadd5f8608197d30, type: 3}
+    difficultyRating: 0
+    baseWeight: 0
   width: 16
   spawnPosition: {x: 40, y: 0, z: 300}
   startPosition: {x: 40, y: 0, z: 0}
@@ -3608,6 +3624,7 @@ MonoBehaviour:
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
   deleteAtZ: -10
+  hardCooldownSegments: 3
 --- !u!1 &2121906828
 GameObject:
   m_ObjectHideFlags: 0

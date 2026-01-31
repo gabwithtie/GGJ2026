@@ -1,14 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GabUnity
 {
     [System.Serializable]
     public struct ScrollerObjectData
     {
-        public string name; // Added for easier debugging in inspector
+        public string name;
         public GameObject prefab;
-        [Range(0f, 1f)] public float skipProbability; // 0 = never skip, 1 = always skip
+        [Tooltip("0 = Easy, 1 = Medium, 2 = Hard")]
+        public int difficultyRating; //
+        [Tooltip("Relative chance to spawn compared to others in the same difficulty pool")]
+        public float baseWeight;
     }
 
     public class InfiniteScrollerSpawner : MonoBehaviour
@@ -29,36 +33,62 @@ namespace GabUnity
         [Header("Cleanup Settings")]
         [SerializeField] private float deleteAtZ = -20.0f;
 
+        [Header("Difficulty Scaling")]
+        [SerializeField] private int hardCooldownSegments = 3; //
+        private int _currentHardCooldown = 0; //
 
         private GameObject last_spawned;
         private Queue<GameObject> activeObjects = new Queue<GameObject>();
-        private int cur_object_index = -1;
-
         private int prewarm_index = 0;
 
         /// <summary>
-        /// Selects the next object, but skips to the next index if the probability roll fails.
+        /// Selects the next object based on weighted probability and current difficulty ceiling.
         /// </summary>
-        private ScrollerObjectData GetNextObjectData()
+        private ScrollerObjectData GetNextObjectWeighted()
         {
             if (objects.Count == 0) return default;
 
-            while (true)
-            {
-                cur_object_index = (cur_object_index + 1) % objects.Count;
-                var candidate = objects[cur_object_index];
+            // 1. Determine max allowed difficulty based on current speed
+            int maxDifficulty = 0;
+            if (Speed > 15f) maxDifficulty = 2;      // Hard segments unlocked
+            else if (Speed > 8f) maxDifficulty = 1;   // Medium segments unlocked
 
-                // Roll for skip. 
-                // If we roll a value higher than the probability, we keep it.
-                // Otherwise, the loop continues to the next index.
-                if (Random.value >= candidate.skipProbability)
+            // 2. Filter eligible objects based on difficulty and hard-cooldown
+            var eligible = new List<ScrollerObjectData>();
+            foreach (var obj in objects)
+            {
+                if (obj.difficultyRating <= maxDifficulty)
                 {
+                    // Skip hard objects if we are currently in a cooldown period
+                    if (obj.difficultyRating == 2 && _currentHardCooldown > 0) continue;
+                    eligible.Add(obj);
+                }
+            }
+
+            // Fallback if filtering left us empty
+            if (eligible.Count == 0) eligible.Add(objects[0]);
+
+            // 3. Weighted Random Selection
+            float totalWeight = eligible.Sum(x => x.baseWeight);
+            float roll = Random.Range(0, totalWeight);
+            float cursor = 0;
+
+            foreach (var candidate in eligible)
+            {
+                cursor += candidate.baseWeight;
+                if (cursor >= roll)
+                {
+                    // 4. Update Hard Object Cooldown
+                    if (candidate.difficultyRating == 2)
+                        _currentHardCooldown = hardCooldownSegments;
+                    else if (_currentHardCooldown > 0)
+                        _currentHardCooldown--;
+
                     return candidate;
                 }
-
-                // Safety: if you accidentally set ALL objects to 1.0 skipProbability, 
-                // this loop would hang Unity. In a real project, add a counter break here.
             }
+
+            return eligible[0];
         }
 
         private void Start()
@@ -80,9 +110,12 @@ namespace GabUnity
             int count = Mathf.CeilToInt(totalDist / width);
 
             // Spawn the very first piece at the start position
-            var data = GetNextObjectData();
-            last_spawned = Instantiate(data.prefab, startPosition, Quaternion.identity);
-            activeObjects.Enqueue(last_spawned);
+            if(prewarm_list.Count > 0)
+            {
+                var data = prewarm_list[0];
+                last_spawned = Instantiate(data, startPosition, Quaternion.identity);
+                activeObjects.Enqueue(last_spawned);
+            }
 
             // Fill the rest up to the spawn point
             for (int i = 0; i < count; i++)
@@ -114,7 +147,6 @@ namespace GabUnity
 
         private void SpawnObject()
         {
-            // Use the position of the last spawned object to ensure no gaps
             float currentDist = Vector3.Distance(spawnPosition, last_spawned.transform.position);
             float overshootDist = currentDist - width;
             Vector3 newSpawnPos = spawnPosition + (direction * overshootDist);
@@ -123,12 +155,12 @@ namespace GabUnity
             {
                 last_spawned = Instantiate(prewarm_list[prewarm_index], newSpawnPos, Quaternion.identity);
                 activeObjects.Enqueue(last_spawned);
-
                 prewarm_index++;
             }
             else
             {
-                var data = GetNextObjectData();
+                // Use the new weighted selection instead of simple indexing
+                var data = GetNextObjectWeighted();
                 last_spawned = Instantiate(data.prefab, newSpawnPos, Quaternion.identity);
                 activeObjects.Enqueue(last_spawned);
             }

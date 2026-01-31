@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cca40f3c035d143a5e52c03205ea40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaskableCube
+  start_active: 1
   defualt_mat: {fileID: 2100000, guid: a93836cfa8bd5ac478bd4ae0ef13c54b, type: 2}
   highlighted_mat: {fileID: 2100000, guid: f2b48e7fb918f454d999a732f86574b6, type: 2}
   shader_t_speed: 3
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c45823d72bd1ff4ca27c9f824227c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.UnitIdentifier
-  _teamId: 0
+  _teamId: 1
 --- !u!114 &-1546976042740003004
 MonoBehaviour:
   m_ObjectHideFlags: 0

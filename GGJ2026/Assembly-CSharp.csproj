@@ -133,6 +133,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\HealthObject.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\PositionTweener.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\Panel.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\AnimationTrigger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\EffectDictionary.cs" />
     <Compile Include="Assets\Scripts\LaneManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\ChangeMaterialOnUnitNear.cs" />
