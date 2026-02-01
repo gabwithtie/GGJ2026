@@ -12,6 +12,7 @@ namespace GabUnity
         [SerializeField] private LayerMask selectableLayer;
         [SerializeField] private Color selectionColor = new Color(0, 1, 0, 0.25f);
         [SerializeField] private Color borderColor = Color.green;
+        [SerializeField] private Texture2D gui_tex;
 
         [Header("Cost Settings")]
         [SerializeField] private float cost_per_block = 0.05f;
@@ -177,12 +178,9 @@ namespace GabUnity
                 Rect guiRect = new Rect(rect.x, Screen.height - rect.yMax, rect.width, rect.height);
 
                 GUI.color = (EnergyManager.CurEnergy >= currentSelectionCost) ? selectionColor : new Color(1, 0, 0, 0.25f);
-                GUI.DrawTexture(guiRect, Texture2D.whiteTexture);
+                GUI.DrawTexture(guiRect, gui_tex);
                 GUI.color = borderColor;
                 DrawRectBorder(guiRect, 2f);
-
-                GUI.Label(new Rect(currentMousePos.x + 10, Screen.height - currentMousePos.y, 150, 20),
-                    $"Cost: {currentSelectionCost:F0} / {EnergyManager.CurEnergy:F0}");
                 GUI.color = Color.white;
             }
         }

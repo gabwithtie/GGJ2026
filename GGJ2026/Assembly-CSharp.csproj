@@ -104,6 +104,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\RhythmTimelineUi.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Currency\CurrencyInfo.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusMovable.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\ComicScroller.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\MessageRequestHandler.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusCharger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\PhysicsDragRotator.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\AnimationTrigger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\EffectDictionary.cs" />
     <Compile Include="Assets\Scripts\LaneManager.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\SafeShotPlayer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\ChangeMaterialOnUnitNear.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\FilledImageCostDisplayer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\AreaStatusGiver.cs" />
