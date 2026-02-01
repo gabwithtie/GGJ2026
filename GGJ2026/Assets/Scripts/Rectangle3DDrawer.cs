@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace GabUnity
@@ -46,6 +47,9 @@ namespace GabUnity
         /// </summary>
         public void OnSelectHold(InputAction.CallbackContext context)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             if (context.performed)
             {
                 isSelecting = true;

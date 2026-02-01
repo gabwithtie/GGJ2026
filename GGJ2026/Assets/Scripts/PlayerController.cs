@@ -44,8 +44,6 @@ namespace GabUnity
 
         private void Awake()
         {
-            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-
             healthobject = GetComponent<HealthObject>();
             isGrounded = GetComponent<GroundChecker>();
         }
@@ -147,6 +145,16 @@ namespace GabUnity
         public void OnMove(InputAction.CallbackContext context)
         {
             inputDirection = context.ReadValue<Vector2>();
+        }
+
+        public void Left()
+        {
+            inputDirection.x = -1;
+        }
+
+        public void Right()
+        {
+            inputDirection.x = 1;
         }
 
         public void ForceJump(float forcemult) => rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);
