@@ -58,6 +58,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\LoadingScreen\LoadingScreen.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\PlayAudioOnUnitNear.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\TriggerKiller.cs" />
+    <Compile Include="Assets\Scripts\AnimatorSceneSwitcher.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\PanelParent.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\CurrencyText.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\Dialogue.cs" />
