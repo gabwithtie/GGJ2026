@@ -117,6 +117,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioAreaTrigger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\HealthDrainer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Projectile\ProjectileDictionary.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\StopmotionAnimator.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\HealthBarManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\ParticleEffectSequencer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\GlobalVolumeWeightLerper.cs" />
