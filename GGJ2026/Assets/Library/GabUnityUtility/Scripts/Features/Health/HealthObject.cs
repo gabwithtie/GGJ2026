@@ -28,6 +28,11 @@ namespace GabUnity
             onDamage += newaction;
         }
 
+        public void Kill(UnitIdentifier source)
+        {
+            TakeDamage(health, source);
+        }
+
         public void TakeDamage(float damage, UnitIdentifier source)
         {
             if (health <= 0)

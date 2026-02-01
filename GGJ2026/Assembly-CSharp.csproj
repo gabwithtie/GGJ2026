@@ -52,6 +52,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\RhythmManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\ContactDamager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\ClosestUnitSelector.cs" />
+    <Compile Include="Assets\Scripts\Rectangle3DDrawer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\TargetTweener.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\LoadingScreen\LoadingScreen.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\PlayAudioOnUnitNear.cs" />
@@ -65,14 +66,17 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Currency\CurrencyChangeInfo.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusInfo.cs" />
+    <Compile Include="Assets\Scripts\TargetZRigidbody.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\PositionSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\ScaleSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerSpawner.cs" />
+    <Compile Include="Assets\Scripts\EnergyManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\MessageActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\Message.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\ConstantVelocity.cs" />
+    <Compile Include="Assets\Scripts\CubeMasker.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\EffectManager.cs" />
     <Compile Include="Assets\Scripts\LaneXSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Navigation\NavmeshPhysicsAgent.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\ComboCounter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\Singleton.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusHolder.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\GenericBroadcaster.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Currency\CurrencyManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\CSharp Utility\TrackedVariable.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SerializableDictionary.cs" />
@@ -99,7 +104,9 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\StatusCharger.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\PhysicsDragRotator.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SingletonAssetPreloader.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\KillBelow.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\LineSpawner.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\Regener.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Manager_Base.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\GenericListAsset.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\HealthDrainer.cs" />
@@ -116,6 +123,7 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectDictionary.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\ActionBroadcaster\ActionRequestManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectController.cs" />
+    <Compile Include="Assets\Scripts\MaskableCube.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\RadiusVisualizer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\HealthObject.cs" />
@@ -123,8 +131,8 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\Panel.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Management\EffectDictionary.cs" />
     <Compile Include="Assets\Scripts\LaneManager.cs" />
-    <Compile Include="Assets\Scripts\MeshEraser.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Proximity\ChangeMaterialOnUnitNear.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\FilledImageCostDisplayer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Status\AreaStatusGiver.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Vfx\Lines\ArchedLine.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Camera\MainCamera.cs" />
@@ -142,10 +150,12 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\ConsistentDataHolder.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueActionRequest.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Health\PlaySoundOnDie.cs" />
+    <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\TriggerForcer.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteObstacleSpawner.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\UnitIdentifier.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Dialogue\DialogueRequestHandler.cs" />
+    <Compile Include="Assets\Scripts\GridGenerator.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Movement\RotationSetter.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Projectile\ProjectileManager.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Data\SingletonResource.cs" />
@@ -156,9 +166,6 @@
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\UI\TextParticle.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Audio\AudioDictionary.cs" />
     <Compile Include="Assets\Library\GabUnityUtility\Scripts\Features\Rhythm\QuantizedEventInvoker.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Library\co.parabox.csg\Samples\Demo Assets\Shader\Wireframe.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1241,6 +1248,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Splines.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.2D.Editor.Overrides">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.2D.Editor.Overrides.dll</HintPath>
       <Private>False</Private>
@@ -1297,8 +1308,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Cinemachine.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Cinemachine.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.UnifiedRayTracing.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.UnifiedRayTracing.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Unity.Cinemachine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
@@ -1417,14 +1436,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Settings.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Settings.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>Library\ScriptAssemblies\Unity.Splines.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Parabox.CSG.Demo.csproj" />
-    <ProjectReference Include="Unity.ProBuilder.Csg.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

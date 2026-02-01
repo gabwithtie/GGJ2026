@@ -2790,7 +2790,7 @@
     "m_Hidden": false,
     "m_PerRendererData": false,
     "m_customAttributes": [],
-    "m_Value": 0.10000000149011612,
+    "m_Value": 1.0,
     "m_FloatType": 0,
     "m_LiteralFloatMode": false,
     "m_RangeValues": {
@@ -3295,7 +3295,7 @@
     "m_ObjectId": "616f80c9d9e544faaef9d667cf46d743",
     "m_Title": "FillTexture (HexTiles)",
     "m_Position": {
-        "x": -1163.999755859375,
+        "x": -1164.0,
         "y": 1447.0
     }
 }
@@ -3521,8 +3521,8 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "x": 2.0,
-        "y": 2.0,
+        "x": 1.0,
+        "y": 1.0,
         "z": 0.0,
         "w": 0.0
     }
@@ -4615,7 +4615,7 @@
     "m_customAttributes": [],
     "m_Value": {
         "x": 1.0,
-        "y": 100.0,
+        "y": 20.0,
         "z": 0.0,
         "w": 0.0
     }
@@ -5604,8 +5604,8 @@
     "m_PerRendererData": false,
     "m_customAttributes": [],
     "m_Value": {
-        "x": 10.0,
-        "y": 10.0,
+        "x": 3.0,
+        "y": 3.0,
         "z": 0.0,
         "w": 0.0
     }

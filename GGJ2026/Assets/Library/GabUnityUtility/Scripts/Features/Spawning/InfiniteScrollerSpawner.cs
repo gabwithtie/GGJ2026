@@ -6,7 +6,7 @@ namespace GabUnity
     public class InfiniteScrollerSpawner : MonoBehaviour
     {
         [Header("Spawn Settings")]
-        [SerializeField] private GameObject default_object;
+        [SerializeField] private List<GameObject> objects;
         [SerializeField] private float width = 10.0f;
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 startPosition;
@@ -23,6 +23,14 @@ namespace GabUnity
 
         private GameObject last_spawned;
         private Queue<GameObject> activeObjects = new Queue<GameObject>();
+
+        private int cur_object = 0;
+
+        private GameObject GetObject() {
+            cur_object++;
+            cur_object %= objects.Count;
+            return objects[cur_object];
+        }
 
         private void Start()
         {
@@ -51,7 +59,7 @@ namespace GabUnity
             for (int i = 0; i <= count; i++)
             {
                 Vector3 pos = startPosition + (-direction * (i * width));
-                GameObject go = Instantiate(default_object, pos, Quaternion.identity);
+                GameObject go = Instantiate(GetObject(), pos, Quaternion.identity);
                 activeObjects.Enqueue(go);
             }
         }
@@ -87,7 +95,7 @@ namespace GabUnity
 
         private void SpawnObject(Vector3 pos)
         {
-            last_spawned = Instantiate(default_object, pos, Quaternion.identity);
+            last_spawned = Instantiate(GetObject(), pos, Quaternion.identity);
             activeObjects.Enqueue(last_spawned);
         }
 
