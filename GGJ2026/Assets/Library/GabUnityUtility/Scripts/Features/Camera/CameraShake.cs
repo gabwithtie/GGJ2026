@@ -22,10 +22,10 @@ namespace GabUnity
         private float shakeFrequency;
         private float seedX, seedY, seedZ;
 
-
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+        
             initialLocalPos = transform.localPosition;
             vcam = GetComponent<CinemachineCamera>();
 

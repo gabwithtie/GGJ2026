@@ -18,6 +18,8 @@ namespace GabUnity
         [SerializeField] private UnityEvent<float> OnChangeCost;
         [SerializeField] private UnityEvent OnStartDrag;
         [SerializeField] private UnityEvent OnEndDrag;
+        [SerializeField] private UnityEvent OnEndDrag_fail;
+        [SerializeField] private UnityEvent OnEndDrag_success;
 
         private Vector2 startMousePos;
         private Vector2 currentMousePos;
@@ -80,9 +82,15 @@ namespace GabUnity
             isSelecting = false;
 
             if (EnergyManager.TryUseEnergy(currentSelectionCost))
+            {
                 foreach (var cube in selectedColliders) cube.CommitEdit();
+                OnEndDrag_success.Invoke();
+            }
             else
+            {
                 foreach (var cube in selectedColliders) cube.OnHover(false);
+                OnEndDrag_fail.Invoke();
+            }
 
             selectedColliders.Clear();
             currentSelectionCost = 0;
@@ -93,6 +101,7 @@ namespace GabUnity
         {
             isSelecting = false;
             foreach (var cube in selectedColliders) cube.OnHover(false);
+            OnEndDrag_fail.Invoke();
             selectedColliders.Clear();
             currentSelectionCost = 0;
             OnEndDrag.Invoke();

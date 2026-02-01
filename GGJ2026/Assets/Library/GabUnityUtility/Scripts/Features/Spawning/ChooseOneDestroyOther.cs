@@ -10,12 +10,12 @@ public class ChooseOneDestroyOther : MonoBehaviour
     {
         int chosen = Random.Range(0, gameObjects.Count);
 
-        for (int i = 0; i < chosen; i++)
+        for (int i = 0; i < gameObjects.Count; i++)
         {
             if(i == chosen)
                 continue;
 
-            Destroy(gameObjects[i]);
+            Destroy(gameObjects[i].gameObject);
         }
     }
 }

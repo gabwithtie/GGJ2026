@@ -21,7 +21,7 @@ namespace GabUnity
 
         public void SetText(float _value)
         {
-            _TextMeshProUGUI.SetText(_value.ToString());
+            _TextMeshProUGUI.SetText((Mathf.Round(_value)).ToString());
         }
 
         public void SetText(int _value)
