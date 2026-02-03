@@ -12,8 +12,6 @@ public class PseudoRamp : MonoBehaviour
         if(other.TryGetComponent(out PlayerController player)){
             var t = Mathf.InverseLerp(bot_ref.position.y, top_ref.position.y, player.transform.position.y);
             t = 1.0f - t;
-
-            player.ForceJump(forcemult * t);
         }
     }
 }

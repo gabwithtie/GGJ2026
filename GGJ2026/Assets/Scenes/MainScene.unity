@@ -3391,7 +3391,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 3
+  m_CollisionDetection: 2
 --- !u!114 &515289125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,17 +3404,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a8b33ad3b1dcef448939b8936b71d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  healingpersecond: 3
-  steeringSpeed: 15
-  horizontalDamping: 5
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  sideRayLength: 0.8
-  rayHeightOffset: 0.5
+  baseSpeed: 15
+  sprintMultiplier: 2
+  accelerationForce: 50
+  steeringForce: 4
+  horizontalDrag: 5
   visuals: {fileID: 496508843}
   maxLeanAngle: 20
-  leanSpeed: 15
+  leanSpeed: 1
   jumpHeight: 5
   timeToJumpApex: 0.5
   upwardGravityMultiplier: 1.42
@@ -3637,7 +3634,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515289119}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cee7a14f44765c145a4c0f75e0793e19, type: 3}
   m_Name: 
@@ -4882,6 +4879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93abef2449b299a4083d8c6c51fd448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerSpawner
+  mode: 1
+  referenceTransform: {fileID: 515289123}
   prewarm_list:
   - {fileID: 8236769848598645588, guid: 49441e98dfa045e42bbbcd9e66dd34c4, type: 3}
   objects:
@@ -4894,13 +4893,13 @@ MonoBehaviour:
     hard_minimum_space: 0
     last_spawn: 0
   width: 16
-  spawnPosition: {x: -40, y: 0, z: 300}
+  spawnPosition: {x: -40, y: 0, z: 100}
   startPosition: {x: -40, y: 0, z: 0}
   currentDiff: 0
   _speed: 5
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
-  deleteAtZ: -10
+  lookBehindDistance: 20
 --- !u!1 &915363459
 GameObject:
   m_ObjectHideFlags: 0
@@ -6607,6 +6606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93abef2449b299a4083d8c6c51fd448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerSpawner
+  mode: 1
+  referenceTransform: {fileID: 515289123}
   prewarm_list:
   - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
   - {fileID: 5592855290196080004, guid: 41af55869efc7304da9a9442993de3f0, type: 3}
@@ -6632,13 +6633,13 @@ MonoBehaviour:
     hard_minimum_space: 0
     last_spawn: 0
   width: 7.95
-  spawnPosition: {x: 0, y: 0, z: 100}
+  spawnPosition: {x: 0, y: 0, z: 50}
   startPosition: {x: 0, y: 0, z: 0}
   currentDiff: 0
   _speed: 5
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
-  deleteAtZ: -10
+  lookBehindDistance: 20
 --- !u!1 &2060686610
 GameObject:
   m_ObjectHideFlags: 0
@@ -6683,6 +6684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93abef2449b299a4083d8c6c51fd448c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.InfiniteScrollerSpawner
+  mode: 1
+  referenceTransform: {fileID: 515289123}
   prewarm_list:
   - {fileID: 8236769848598645588, guid: 49441e98dfa045e42bbbcd9e66dd34c4, type: 3}
   objects:
@@ -6695,13 +6698,13 @@ MonoBehaviour:
     hard_minimum_space: 0
     last_spawn: 0
   width: 16
-  spawnPosition: {x: 40, y: 0, z: 300}
+  spawnPosition: {x: 40, y: 0, z: 100}
   startPosition: {x: 40, y: 0, z: 0}
   currentDiff: 0
   _speed: 5
   use_global: 1
   direction: {x: 0, y: 0, z: -1}
-  deleteAtZ: -10
+  lookBehindDistance: 20
 --- !u!1 &2121906828
 GameObject:
   m_ObjectHideFlags: 0

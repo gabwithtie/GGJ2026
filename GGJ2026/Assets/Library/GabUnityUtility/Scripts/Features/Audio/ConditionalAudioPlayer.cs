@@ -24,6 +24,9 @@ namespace GabUnity
 
         public void PlayShot()
         {
+            if(!this.enabled)
+                return;
+
             if (audioclips.ContainsKey(area_id))
                 audioSource.PlayOneShotSafe(audioclips[area_id]);
             else

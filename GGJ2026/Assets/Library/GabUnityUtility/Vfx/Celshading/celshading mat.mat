@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CelShader
+  m_Name: celshading mat
   m_Shader: {fileID: -6465566751694194690, guid: a43a0975fff4a5c4cacb67692619f1da, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorThreshold: 5.81
+    - _ColorThreshold: 7.75
     - _Cuts: 3
-    - _DepthScaling: 839.86
-    - _DistanceThreshold: 0.046
-    - _NormalThreshold: 0.15
-    - _SamplingDistance: 2
+    - _DepthScaling: 100
+    - _DistanceThreshold: 0.226
+    - _NormalThreshold: 6.05
+    - _SamplingDistance: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

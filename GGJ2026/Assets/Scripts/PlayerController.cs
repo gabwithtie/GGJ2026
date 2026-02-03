@@ -6,20 +6,18 @@ namespace GabUnity
     [RequireComponent(typeof(Rigidbody), typeof(GroundChecker), typeof(HealthObject))]
     public class PlayerController : MonoBehaviour
     {
-        [Header("Balancing")]
-        [SerializeField] private float healingpersecond = 3.0f;
+        [Header("Forward Movement (Physics)")]
+        [SerializeField] private float baseSpeed = 15.0f;
+        [SerializeField] private float sprintMultiplier = 2.0f;
+        [SerializeField] private float accelerationForce = 50.0f; // How much force to apply to reach target speed
+        private bool isSprinting = false;
 
-        [Header("Steering Settings")]
-        [SerializeField] private float steeringSpeed = 20.0f;
-        [SerializeField] private float horizontalDamping = 10.0f; // Higher damping for snappier kinematic feel
+        [Header("Steering (Physics)")]
+        [SerializeField] private float steeringForce = 40.0f;
+        [SerializeField] private float horizontalDrag = 5.0f; // Helps stop sliding when input is released
         private float maxHorizontalRange => ((float)LaneManager.MaxLane + 0.5f) * LaneManager.LaneWidth;
 
-        [Header("Obstacle Avoidance")]
-        [SerializeField] private LayerMask obstacleLayer;
-        [SerializeField] private float sideRayLength = 0.8f;
-        [SerializeField] private float rayHeightOffset = 0.5f;
-
-        [Header("Motorcycle Leaning")]
+        [Header("Motorcycle Visuals")]
         [SerializeField] private Transform visuals;
         [SerializeField] private float maxLeanAngle = 35.0f;
         [SerializeField] private float leanSpeed = 10.0f;
@@ -32,30 +30,21 @@ namespace GabUnity
 
         private Rigidbody rb;
         private Vector2 inputDirection;
-        private float currentXVelocity; // Tracked for leaning visuals
-        private float targetXPos;       // The "Virtual" X we want to be at
         private GroundChecker isGrounded;
         private HealthObject healthobject;
 
         private float gravity;
         private float initialJumpVelocity;
 
-        private void OnValidate() => CalculateJumpPhysics();
-
         private void Awake()
         {
+            rb = GetComponent<Rigidbody>();
             healthobject = GetComponent<HealthObject>();
             isGrounded = GetComponent<GroundChecker>();
         }
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.isKinematic = false; // We use MovePosition on a non-kinematic RB for better collision interaction
-            rb.interpolation = RigidbodyInterpolation.Interpolate;
-
-            targetXPos = transform.position.x;
             CalculateJumpPhysics();
         }
 
@@ -68,61 +57,53 @@ namespace GabUnity
         private void Update()
         {
             HandleVisualLean();
-
-            healthobject.Heal(healingpersecond * Time.deltaTime);
+            healthobject.Heal(3.0f * Time.deltaTime);
         }
 
         private void FixedUpdate()
         {
-            HandleKinematicSteering();
+            if (!healthobject.Alive) return;
+
+            ApplyForwardForce();
+            ApplySteeringForce();
             ApplyCustomGravity();
         }
 
-        private void HandleKinematicSteering()
+        private void ApplyForwardForce()
         {
-            if (!healthobject.Alive)
-                return;
+            float targetSpeed = isSprinting ? baseSpeed * sprintMultiplier : baseSpeed;
 
-            // 1. Move the target X position based on input
-            float inputX = inputDirection.x;
+            // Calculate velocity difference
+            float currentZVel = rb.linearVelocity.z;
+            float velDiff = targetSpeed - currentZVel;
 
-            // 2. Obstacle Check: If we are trying to move into a wall, don't move the targetX
-            if (IsBlockingSteer(inputX))
-            {
-                inputX = 0;
-            }
-
-            targetXPos += inputX * steeringSpeed * Time.fixedDeltaTime;
-            targetXPos = Mathf.Clamp(targetXPos, -maxHorizontalRange, maxHorizontalRange);
-
-            // 3. Smoothly move the Rigidbody to the target X
-            Vector3 currentPos = rb.position;
-            float newX = Mathf.Lerp(currentPos.x, targetXPos, Time.fixedDeltaTime * horizontalDamping);
-
-            // Calculate current velocity for the lean effect
-            currentXVelocity = (newX - currentPos.x) / Time.fixedDeltaTime;
-
-            // 4. Perform the actual Rigidbody Move
-            rb.MovePosition(new Vector3(newX, currentPos.y, currentPos.z));
+            // Apply force proportional to the difference to reach target speed
+            float force = velDiff * accelerationForce;
+            rb.AddForce(Vector3.forward * force, ForceMode.Acceleration);
         }
 
-        private bool IsBlockingSteer(float inputX)
+        private void ApplySteeringForce()
         {
-            if (Mathf.Abs(inputX) < 0.01f) return false;
+            // 1. Calculate Target Horizontal Velocity
+            float targetXVel = inputDirection.x * steeringForce;
 
-            Vector3 rayDir = (inputX > 0) ? Vector3.right : Vector3.left;
-            Vector3 rayOrigin = transform.position + Vector3.up * rayHeightOffset;
+            // 2. Prevent moving out of lanes via force suppression
+            if ((transform.position.x > maxHorizontalRange && targetXVel > 0) ||
+                (transform.position.x < -maxHorizontalRange && targetXVel < 0))
+            {
+                targetXVel = 0;
+            }
 
-            Debug.DrawRay(rayOrigin, rayDir * sideRayLength, Color.red);
-            return Physics.Raycast(rayOrigin, rayDir, sideRayLength, obstacleLayer);
+            // 3. Apply Horizontal Force
+            float velDiff = targetXVel - rb.linearVelocity.x;
+            rb.AddForce(Vector3.right * velDiff, ForceMode.VelocityChange);
         }
 
         private void HandleVisualLean()
         {
             if (visuals == null) return;
-
-            // Lean is now based on how fast the MovePosition is actually shifting the player
-            float leanFactor = -currentXVelocity / steeringSpeed;
+            // Lean is based on current X velocity relative to steering potential
+            float leanFactor = -rb.linearVelocity.x / steeringForce;
             float targetAngle = Mathf.Clamp(leanFactor * maxLeanAngle, -maxLeanAngle, maxLeanAngle);
 
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
@@ -131,10 +112,10 @@ namespace GabUnity
 
         private void ApplyCustomGravity()
         {
-            // We keep Y-axis physics dynamic so the player can fall and jump naturally
             if (isGrounded.Grounded && rb.linearVelocity.y <= 0)
             {
-                rb.linearVelocity = new Vector3(0, -0.1f, 0);
+                // Snap to ground slightly to prevent "bouncing" while driving
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, -0.5f, rb.linearVelocity.z);
                 return;
             }
 
@@ -142,35 +123,17 @@ namespace GabUnity
             rb.AddForce(Vector3.up * (gravity * multiplier), ForceMode.Acceleration);
         }
 
-        public void OnMove(InputAction.CallbackContext context)
+        // --- Input Callbacks ---
+        public void OnMove(InputAction.CallbackContext context) => inputDirection = context.ReadValue<Vector2>();
+        public void OnSprint(InputAction.CallbackContext context)
         {
-            inputDirection = context.ReadValue<Vector2>();
+            if (context.performed) isSprinting = true;
+            if (context.canceled) isSprinting = false;
         }
-
-        public void Left()
-        {
-            inputDirection.x = -1;
-        }
-
-        public void Right()
-        {
-            inputDirection.x = 1;
-        }
-
-        public void ForceJump(float forcemult) => rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity * forcemult, rb.linearVelocity.z);
-
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (context.performed)
-                NormalJump();
-        }
-
-        public void NormalJump()
-        {
-            if(isGrounded.Grounded)
-            {
+            if (context.performed && isGrounded.Grounded)
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, initialJumpVelocity, rb.linearVelocity.z);
-            }
         }
     }
 }

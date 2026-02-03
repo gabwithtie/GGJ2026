@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7586959849063761935}
   - component: {fileID: 8686469072671982106}
   - component: {fileID: 9090759323910322698}
-  - component: {fileID: 7066949882371663532}
   - component: {fileID: 2943902161949850681}
   - component: {fileID: -1546976042740003004}
   m_Layer: 3
@@ -133,33 +132,6 @@ MonoBehaviour:
   highlighted_mat: {fileID: 2100000, guid: f2b48e7fb918f454d999a732f86574b6, type: 2}
   shader_t_speed: 3
   shader_t_name: _Diagonal_Mask
---- !u!54 &7066949882371663532
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7828154803552020095}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &2943902161949850681
 MonoBehaviour:
   m_ObjectHideFlags: 0
