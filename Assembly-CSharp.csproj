@@ -54,6 +54,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Rhythm\QuantizedEventInvoker.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\PlayerClickHandler.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Lines\ArchedLine.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\SquareHoleDrawer.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\EffectController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\ActionBroadcaster\GenericActionRequestHandler.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedPointerUI.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Currency\CurrencyInfo.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\AudioOneShotter.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Data\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\HoleSubdivider.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\CurrencyChangeText.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Data\SingletonDictionaryAsset.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Rhythm\ComboCounter.cs" />
@@ -124,7 +126,6 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\AnimatedButton.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\TargetTweener.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Projectile\ProjectileDictionary.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Health\PlaySoundOnDie.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Dialogue\Message.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\OnHoverButton.cs" />
@@ -168,29 +169,29 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Dialogue\Dialogue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\imports\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\imports\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
