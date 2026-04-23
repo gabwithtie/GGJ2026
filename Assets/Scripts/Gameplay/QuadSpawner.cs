@@ -12,6 +12,7 @@ namespace GabUnity
         [SerializeField] private GameObject quadPrefab;
         [SerializeField] private GameObject previewPrefab;
         [SerializeField] private float interpolationSpeed = 15f;
+        [SerializeField] private float bridgeWidth = 1.0f;
 
         [Header("Anchor Reset Settings")]
         [SerializeField] private Transform distanceReference;
@@ -137,11 +138,12 @@ namespace GabUnity
 
             // Width is horizontal difference, Y scale is locked at 1
             float depth = (pA - xAyB).magnitude;
-            scale = new Vector3(delta.x, 1f, depth);
+            scale = new Vector3(bridgeWidth, 1f, depth);
 
             // Calculate X-axis tilt to bridge vertical gap
-            float angleX = Mathf.Atan2(delta.y, delta.z) * Mathf.Rad2Deg;
-            rotation = Quaternion.Euler(-angleX, 0f, 0f);
+            var r_cross = Vector3.Cross(delta, Vector3.up);
+
+            rotation = Quaternion.LookRotation(delta, Vector3.Cross(delta, r_cross));
         }
     }
 }

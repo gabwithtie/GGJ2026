@@ -263,8 +263,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241656723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.440951, y: -0.000000018890626, z: 0.000000009280836, w: 0.8975312}
-  m_LocalPosition: {x: 0, y: 2.358, z: -0.73}
+  m_LocalRotation: {x: 0.25071537, y: -8.2238085e-16, z: 3.1669236e-16, w: 0.96806085}
+  m_LocalPosition: {x: 0, y: 2.358, z: -1.82}
   m_LocalScale: {x: 0.009999996, y: 0.010000002, z: 0.010000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -284,11 +284,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 5
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0.5, y: 0.5, z: 0.5}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 1.79, z: -0.73}
+  FollowOffset: {x: 0, y: 1.79, z: -1.82}
 --- !u!114 &241656728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,6 +919,7 @@ MonoBehaviour:
   quadPrefab: {fileID: 1869402570787395193, guid: 41367a9b88b21ad45be210d2e04c1bdc, type: 3}
   previewPrefab: {fileID: 1869402570787395193, guid: 45de3794469acde459bd0077b20daedf, type: 3}
   interpolationSpeed: 15
+  bridgeWidth: 1
   distanceReference: {fileID: 4471926157726536189}
   maxAnchorDistance: 10
 --- !u!114 &1013329551
@@ -1464,19 +1465,18 @@ MonoBehaviour:
     - {fileID: 3150618121722991069, guid: 938718fec651b7441be2819d4f76fdba, type: 3}
     - {fileID: 2172874193106395865, guid: 18098493f4e637c4692d6a86b537ac58, type: 3}
     - {fileID: 4803502190274235904, guid: ca86c200b09559c409290ee60a01247b, type: 3}
-    easy_minimum_space: 0
-    hard_minimum_space: 0
+    easy_minimum_space: 1
+    hard_minimum_space: 2
     last_spawn: 0
   - prefabs:
     - {fileID: 7234130237315096601, guid: 19cb5713816362d4aab35692a93a39f6, type: 3}
-    easy_minimum_space: 14
-    hard_minimum_space: 7
+    easy_minimum_space: 10
+    hard_minimum_space: 6
     last_spawn: 0
   - prefabs:
-    - {fileID: 3150618121722991069, guid: f2b7bc7d58fb08e47b65690c6ce9fe19, type: 3}
     - {fileID: 3150618121722991069, guid: ddebaca153f2e6e4180a57309f466f01, type: 3}
-    easy_minimum_space: 3
-    hard_minimum_space: 1
+    easy_minimum_space: 1
+    hard_minimum_space: 0
     last_spawn: 0
   width: 8
   spawnPosition: {x: 0, y: 0, z: 85.41}
@@ -1546,7 +1546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.GuidedPointer
   SnapSmoothing: 15
-  PlaneDist: 20
+  PlaneDist: 40
 --- !u!1 &1916848445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,8 +1711,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916848445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.44095096, y: -0.000000018890626, z: 0.0000000092808365, w: 0.8975312}
-  m_LocalPosition: {x: 0, y: 2.358, z: -0.73}
+  m_LocalRotation: {x: 0.2507154, y: -7.9359126e-16, z: 2.0552999e-16, w: 0.96806085}
+  m_LocalPosition: {x: 0, y: 2.358, z: -1.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7901,8 +7901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374bd85a0aec5c047ba97eaf9ec1e72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.PlayerMovement
-  MoveSpeed: 2
-  SprintSpeed: 12
+  MoveSpeed: 5
+  SprintSpeed: 8
   SpeedChangeRate: 17
   RotationSmoothTime: 0.05
   GroundLayers:
