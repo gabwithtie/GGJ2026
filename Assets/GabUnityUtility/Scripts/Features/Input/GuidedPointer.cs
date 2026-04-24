@@ -3,16 +3,15 @@ using UnityEngine.InputSystem;
 
 namespace GabUnity
 {
+    // Ensure the Pointer updates its state before interactables read it
+    [DefaultExecutionOrder(-50)]
     public class GuidedPointer : MonoSingleton<GuidedPointer>
     {
-        [Header("Settings")]
-        public float SnapSmoothing = 20f;
-
         [Header("Projection Plane")]
         public float PlaneDist = 10;
+        [Tooltip("The detection radius in normalized screen position.")]
+        public float ScreenDetectionRadius = 0.1f;
 
-        // The 'Raw' mouse position projected onto the world plane
-        public static Vector3 RawWorldPosition => Instance._actualWorldPosition;
         // The 'Lerped/Snapped' position
         public static Vector3 WorldPosition => Instance._guidedWorldPosition;
         // Helper for lines to get the current hardware mouse position
@@ -21,39 +20,37 @@ namespace GabUnity
         public bool IsGuided { get; private set; }
         public GameObject GuidingObject { get; private set; }
 
-        private Vector3 _actualWorldPosition;
         private Vector3 _guidedWorldPosition;
         private Vector3 _bestSnapTarget;
 
         // This is now tracking PIXEL distance, not world units
-        private float _bestSnapScreenDistance = float.MaxValue;
+        private float _bestSnapScreenDistanceSqr = float.MaxValue;
         private GameObject _bestSnapObject;
 
         private void Update()
         {
             UpdateActualMousePosition();
 
-            if (_bestSnapScreenDistance < float.MaxValue)
+            if (_bestSnapScreenDistanceSqr < float.MaxValue)
             {
                 IsGuided = true;
                 GuidingObject = _bestSnapObject;
-                _guidedWorldPosition = Vector3.Lerp(_guidedWorldPosition, _bestSnapTarget, Time.deltaTime * SnapSmoothing);
+                _guidedWorldPosition = _bestSnapTarget;
             }
             else
             {
                 IsGuided = false;
                 GuidingObject = null;
-                _guidedWorldPosition = Vector3.Lerp(_guidedWorldPosition, _actualWorldPosition, Time.deltaTime * SnapSmoothing);
             }
 
             // Reset for next frame
-            _bestSnapScreenDistance = float.MaxValue;
+            _bestSnapScreenDistanceSqr = float.MaxValue;
             _bestSnapObject = null;
         }
 
         private void UpdateActualMousePosition()
         {
-            if (Pointer.current == null) return;
+            if (Pointer.current == null || MainCamera.Cam == null) return;
 
             MouseScreenPosition = Pointer.current.position.ReadValue();
             Ray ray = MainCamera.Cam.ScreenPointToRay(MouseScreenPosition);
@@ -63,20 +60,58 @@ namespace GabUnity
 
             if (interactionPlane.Raycast(ray, out float enter))
             {
-                _actualWorldPosition = ray.GetPoint(enter);
+                _guidedWorldPosition = ray.GetPoint(enter);
             }
         }
 
-        /// <summary>
-        /// Logic now uses screenDistance to decide which candidate wins.
-        /// </summary>
-        public void ReportSnapCandidate(Vector3 worldSnapPos, float screenDistance, GameObject source)
+        public void ReportSnapCandidate(Vector3 worldSnapPos, GameObject source)
         {
-            if (Vector3.SqrMagnitude(worldSnapPos - MainCamera.Cam.transform.position) < PlaneDist * PlaneDist && screenDistance < _bestSnapScreenDistance)
+            if (MainCamera.Cam == null) return;
+
+            // 1. Convert 3D world points to 2D Screen points
+            Vector3 screenp = MainCamera.Cam.WorldToScreenPoint(worldSnapPos);
+
+            // Skip if the points are behind the camera
+            if (screenp.z < 0) return;
+
+            var delta = MouseScreenPosition - (Vector2)screenp;
+            delta /= new Vector2(Screen.width, Screen.height); // Normalize by screen size
+
+            float screenDistSqr = Vector2.SqrMagnitude(delta);
+
+            if (screenDistSqr > ScreenDetectionRadius * ScreenDetectionRadius)
             {
-                _bestSnapScreenDistance = screenDistance;
-                _bestSnapTarget = worldSnapPos;
-                _bestSnapObject = source;
+                return;
+            }
+
+            // 1. Basic distance and best-score check
+            float distToCamSqr = Vector3.SqrMagnitude(worldSnapPos - MainCamera.Cam.transform.position);
+
+            if (distToCamSqr < PlaneDist * PlaneDist && screenDistSqr < _bestSnapScreenDistanceSqr)
+            {
+                // 2. Line of Sight Check (Raycast)
+                Vector3 origin = MainCamera.Cam.transform.position;
+                Vector3 direction = worldSnapPos - origin;
+                float maxDistance = direction.magnitude;
+
+                bool hit_correct = true;
+                bool hit_close = true;
+
+                if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance))
+                {
+                    if (hit.collider.gameObject != source)
+                        hit_correct = false;
+
+                    if (hit.distance < maxDistance - 0.05f)
+                        hit_close = false;
+                }
+
+                if (hit_correct || hit_close)
+                {
+                    _bestSnapScreenDistanceSqr = screenDistSqr;
+                    _bestSnapTarget = worldSnapPos;
+                    _bestSnapObject = source;
+                }
             }
         }
     }

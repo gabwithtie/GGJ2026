@@ -3,12 +3,11 @@ using UnityEngine;
 namespace GabUnity
 {
     [RequireComponent(typeof(LineRenderer))]
-    public class GuidedPointerLine : MonoBehaviour
+    public class GuidedPointerLine : GuidedInteractable
     {
+        [Header("Line Settings")]
         public Transform PointA;
         public Transform PointB;
-        [Tooltip("The detection radius in PIXELS.")]
-        public float ScreenDetectionRadius = 50.0f;
 
         private LineRenderer _lineRenderer;
 
@@ -18,8 +17,11 @@ namespace GabUnity
             _lineRenderer.positionCount = 2;
         }
 
-        private void Update()
+        protected override void Update()
         {
+            // CRITICAL: Call the base class Update so Hover and Click events work
+            base.Update();
+
             if (PointA == null || PointB == null) return;
 
             _lineRenderer.SetPosition(0, PointA.position);
@@ -40,16 +42,12 @@ namespace GabUnity
 
             // 3. Find the 2D distance for the "Snap Winner" calculation
             Vector2 closestScreenPoint = Vector2.Lerp((Vector2)screenA, (Vector2)screenB, t);
-            float screenDist = Vector2.Distance(mousePos, closestScreenPoint);
 
-            if (screenDist < ScreenDetectionRadius)
-            {
-                // 4. Calculate the 3D world position corresponding to that 2D 't'
-                Vector3 worldSnapPos = Vector3.Lerp(PointA.position, PointB.position, t);
+            // 4. Calculate the 3D world position corresponding to that 2D 't'
+            Vector3 worldSnapPos = Vector3.Lerp(PointA.position, PointB.position, t);
 
-                // Report back using pixel distance
-                GuidedPointer.Instance.ReportSnapCandidate(worldSnapPos, screenDist, gameObject);
-            }
+            // Report back using pixel distance, passing 'gameObject' to claim the guidance
+            GuidedPointer.Instance.ReportSnapCandidate(worldSnapPos, gameObject);
         }
 
         /// <summary>

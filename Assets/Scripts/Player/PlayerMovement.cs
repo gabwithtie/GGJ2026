@@ -164,8 +164,7 @@ namespace GabUnity
             if (!_isGrounded && _jumpCount >= MaxJumps) return;
 
             float jumpImpulse = JumpPower;
-            if (_rb.linearVelocity.y < 0)
-                jumpImpulse -= _rb.linearVelocity.y; // Add extra "kick" if falling to ensure consistent height
+            jumpImpulse -= _rb.linearVelocity.y; // Add extra "kick" if falling to ensure consistent height
 
             Vector3 jumpDir = Vector3.up * jumpImpulse;
             _rb.AddForce(jumpDir, ForceMode.VelocityChange);

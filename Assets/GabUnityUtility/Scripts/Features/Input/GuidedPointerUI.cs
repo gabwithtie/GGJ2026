@@ -4,6 +4,9 @@ namespace GabUnity
 {
     public class GuidedPointerUI : MonoBehaviour
     {
+        [Header("Settings")]
+        public float SnapSmoothing = 20f;
+
         public RectTransform Reticle;
         public Vector2 Offset;
 
@@ -28,7 +31,13 @@ namespace GabUnity
                 return;
             }
 
-            Reticle.position = (Vector2)screenPos + Offset;
+            var final = (Vector2)screenPos + Offset;
+
+            if(GuidedPointer.Instance.IsGuided)
+                Reticle.position = Vector3.Lerp(Reticle.position, final, Time.deltaTime * SnapSmoothing);
+            else
+                Reticle.position = final;
+
         }
     }
 }

@@ -31,6 +31,7 @@ namespace GabUnity
             _animIDRoll;
 
         private float _lastRotationY;
+        private float _lastVelY;
         private float _leanAmount;
 
         private void Start()
@@ -46,7 +47,7 @@ namespace GabUnity
             _wasGrounded = _movement.Grounded;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (_animator == null) return;
 
@@ -55,7 +56,7 @@ namespace GabUnity
             // --- LANDING ROLL LOGIC ---
             if (!_wasGrounded && _movement.Grounded)
             {
-                if (_movement.VerticalVelocity < RollThreshold)
+                if (_lastVelY < RollThreshold)
                 {
                     _animator.SetBool(_animIDRoll, true);
                 }
@@ -74,6 +75,8 @@ namespace GabUnity
             }
 
             HandleProceduralLean();
+
+            _lastVelY = _movement.VerticalVelocity;
         }
 
         private void HandleProceduralLean()

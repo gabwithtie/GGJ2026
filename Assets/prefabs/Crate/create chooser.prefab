@@ -46,6 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.PrefabOnLoadChooser
   choices:
   - {fileID: 9191167835403720860, guid: b19a5070cc061f041ba3a3b99342c73a, type: 3}
-  - {fileID: 1665850474014416456, guid: 1607db8926f11d045bea78bdcf05e5af, type: 3}
   - {fileID: 9191167835403720860, guid: 930930240dd3e1640beda94ef9dc2c2e, type: 3}
   - {fileID: 9012088985011421661, guid: dbe126e97c2ab8c47b217528435ee77e, type: 3}
