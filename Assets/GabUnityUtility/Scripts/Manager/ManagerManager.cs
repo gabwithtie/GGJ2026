@@ -12,7 +12,6 @@ namespace GabUnity
         protected override void Awake()
         {
             InstantiateAllInheritedClassesOf(typeof(Manager_Base<>));
-            InstantiateAllInheritedClassesOf(typeof(ActionRequestHandler<>));
         }
 
         private void InstantiateAllInheritedClassesOf(Type parentType)

@@ -13,9 +13,12 @@ namespace GabUnity
         public float Health => health;
         public float MaxHealth => maxhealth;
 
+        public bool Alive => health > 0;
+
         [SerializeField] private bool DestroyOnDie = true;
 
         [SerializeField] private UnityEvent<float, UnitIdentifier> onDamageEvent;
+        [SerializeField] private UnityEvent<UnitIdentifier> onDieEvent;
         private Action<UnitIdentifier> onDie;
         private Action<float, UnitIdentifier> onDamage;
         public void SubscribeOnDie(Action<UnitIdentifier> newaction)
@@ -25,6 +28,20 @@ namespace GabUnity
         public void SubscribeOnDamage(Action<float, UnitIdentifier> newaction)
         {
             onDamage += newaction;
+        }
+
+        public void Kill(UnitIdentifier source)
+        {
+            TakeDamage(health, source);
+        }
+
+        public void Heal(float amount)
+        {
+            if (!Alive)
+                return;
+
+            health += amount;
+            health = Mathf.Clamp(health, 0, maxhealth);
         }
 
         public void TakeDamage(float damage, UnitIdentifier source)
@@ -41,6 +58,8 @@ namespace GabUnity
                 return;
 
             onDie?.Invoke(source);
+            onDieEvent.Invoke(source);
+
             if (DestroyOnDie)
             {
                 Destroy(this.gameObject);

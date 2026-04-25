@@ -90,7 +90,7 @@ namespace GabUnity
         public void EnablePreview(bool enable)
         {
             // Lock out preview changes if the main object is already alive
-            if (_isMainActivated) return;
+            if (IsBlocked() || _isMainActivated) return;
 
             // Optional: You could also force the preview off if IsBlocked() is true, 
             // but usually it's good to show the preview so the player knows where they are aiming.

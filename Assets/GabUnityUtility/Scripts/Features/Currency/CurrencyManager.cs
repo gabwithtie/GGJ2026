@@ -8,6 +8,9 @@ namespace GabUnity
 
         public static int GetAmount(CurrencyInfo currencyInfo)
         {
+            if (currencyInfo == null)
+                return 0;
+
             if(Instance.currencyamounts.ContainsKey(currencyInfo))
                 return Instance.currencyamounts[currencyInfo];
             return 0;
@@ -19,6 +22,9 @@ namespace GabUnity
                 Instance.currencyamounts[currencyInfo] += amount;
             else
                 Instance.currencyamounts[currencyInfo] = amount;
+
+            if(Instance.currencyamounts[currencyInfo] > currencyInfo.Max)
+                Instance.currencyamounts[currencyInfo] = currencyInfo.Max;
         }
 
         public static bool Spend(CurrencyChangeInfo changeInfo)

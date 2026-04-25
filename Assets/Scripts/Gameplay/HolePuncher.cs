@@ -10,6 +10,10 @@ namespace GabUnity
         [SerializeField] private Vector2 holeSize = new Vector2(1f, 1f);
         [SerializeField] private float minSegmentSize = 0.01f;
 
+        [Header("Effects")]
+        [Tooltip("A unit cube prefab that is spawned in the empty space of the hole.")]
+        [SerializeField] private GameObject destroyedPrefab;
+
         [Header("Filtering")]
         [Tooltip("Only children with this tag will be subdivided. Leave empty to attempt all.")]
         [SerializeField] private string segmentTag = "WallSegment";
@@ -24,21 +28,14 @@ namespace GabUnity
             _lineRenderer.loop = true;
             _lineRenderer.enabled = false;
 
-            // Important: Subscribe to the base class click event
-            OnClick.AddListener(HandlePunchHole);
-
             RefreshColliders();
         }
 
         protected override void Update()
         {
-            // 1. Tell GuidedPointer where the surface is
             ReportToPointer();
-
-            // 2. Run base Hover/Click logic
             base.Update();
 
-            // 3. Update Visual Preview
             if (GuidedPointer.Instance.IsGuided && GuidedPointer.Instance.GuidingObject == gameObject)
             {
                 _lineRenderer.enabled = true;
@@ -59,7 +56,6 @@ namespace GabUnity
             float minDistance = float.MaxValue;
             bool hitAny = false;
 
-            // Check all child colliders to find the front-most surface
             foreach (var col in _childColliders)
             {
                 if (col != null && col.Raycast(ray, out RaycastHit hit, 100f))
@@ -79,7 +75,7 @@ namespace GabUnity
             }
         }
 
-        private void HandlePunchHole()
+        public void HandlePunchHole()
         {
             Vector3 worldPos = GuidedPointer.WorldPosition;
             Vector3 localCenter = transform.InverseTransformPoint(worldPos);
@@ -89,16 +85,18 @@ namespace GabUnity
             float hMinY = localCenter.y - (holeSize.y * 0.5f);
             float hMaxY = localCenter.y + (holeSize.y * 0.5f);
 
-            // Collect valid segments before we start destroying them
             List<Transform> currentSegments = new List<Transform>();
+            float thickness = 0.1f; // Default fallback thickness
+
             foreach (Transform child in transform)
             {
                 if (!child.gameObject.activeInHierarchy) continue;
 
-                // Only process objects that are meant to be wall segments
                 if (string.IsNullOrEmpty(segmentTag) || child.CompareTag(segmentTag))
                 {
                     currentSegments.Add(child);
+                    // Capture the thickness of the segments being punched
+                    thickness = child.localScale.z;
                 }
             }
 
@@ -113,13 +111,20 @@ namespace GabUnity
 
             if (subdividedCount > 0)
             {
+                SpawnDestroyedVisual(worldPos, thickness);
                 RefreshColliders();
-                Debug.Log($"Successfully punched hole. Subdivided {subdividedCount} segments.");
             }
-            else
-            {
-                Debug.LogWarning("Click detected, but no valid wall segments were found in the hole area.");
-            }
+        }
+
+        private void SpawnDestroyedVisual(Vector3 worldPosition, float thickness)
+        {
+            if (destroyedPrefab == null) return;
+
+            // Instantiate at the punch location with the wall's rotation
+            GameObject go = Instantiate(destroyedPrefab, worldPosition, transform.rotation);
+
+            // Scale the unit cube to match the hole dimensions and wall thickness
+            go.transform.localScale = new Vector3(holeSize.x, holeSize.y, thickness);
         }
 
         private bool TrySubdivide(Transform segment, float hMinX, float hMaxX, float hMinY, float hMaxY)
@@ -127,33 +132,24 @@ namespace GabUnity
             Vector3 pos = segment.localPosition;
             Vector3 scale = segment.localScale;
 
-            // Segment Bounds (Parent local space)
             float sMinX = pos.x - (scale.x * 0.5f);
             float sMaxX = pos.x + (scale.x * 0.5f);
             float sMinY = pos.y - (scale.y * 0.5f);
             float sMaxY = pos.y + (scale.y * 0.5f);
 
-            // 1. AABB Overlap check (is the hole even touching this segment?)
             if (hMinX >= sMaxX || hMaxX <= sMinX || hMinY >= sMaxY || hMaxY <= sMinY)
                 return false;
 
-            // 2. Intersection Bounds (Fixed typo here from previous response)
             float iMinX = Mathf.Clamp(hMinX, sMinX, sMaxX);
             float iMaxX = Mathf.Clamp(hMaxX, sMinX, sMaxX);
             float iMinY = Mathf.Clamp(hMinY, sMinY, sMaxY);
             float iMaxY = Mathf.Clamp(hMaxY, sMinY, sMaxY);
 
-            // 3. Create the 4 fragments surrounding the intersection
-            // Left
             CreateFragment(segment.gameObject, sMinX, iMinX, sMinY, sMaxY, scale.z, pos.z);
-            // Right
             CreateFragment(segment.gameObject, iMaxX, sMaxX, sMinY, sMaxY, scale.z, pos.z);
-            // Top
             CreateFragment(segment.gameObject, iMinX, iMaxX, iMaxY, sMaxY, scale.z, pos.z);
-            // Bottom
             CreateFragment(segment.gameObject, iMinX, iMaxX, sMinY, iMinY, scale.z, pos.z);
 
-            // 4. Destroy original segment
             Destroy(segment.gameObject);
             return true;
         }
@@ -163,7 +159,6 @@ namespace GabUnity
             float width = xMax - xMin;
             float height = yMax - yMin;
 
-            // Don't create invisible or microscopic slivers
             if (width < minSegmentSize || height < minSegmentSize) return;
 
             GameObject fragment = Instantiate(prototype, transform);
@@ -182,7 +177,7 @@ namespace GabUnity
             Vector3 localCenter = transform.InverseTransformPoint(worldCenter);
             float hW = holeSize.x * 0.5f;
             float hH = holeSize.y * 0.5f;
-            float z = localCenter.z - 0.01f; // Slight offset to prevent Z-fighting with wall
+            float z = localCenter.z - 0.01f;
 
             _lineRenderer.SetPosition(0, transform.TransformPoint(new Vector3(localCenter.x - hW, localCenter.y - hH, z)));
             _lineRenderer.SetPosition(1, transform.TransformPoint(new Vector3(localCenter.x - hW, localCenter.y + hH, z)));

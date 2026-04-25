@@ -23,4 +23,6 @@ MonoBehaviour:
       Value: {fileID: 7174412991816141123, guid: 2149bd9e6001d4344b24373cee8d6b81, type: 3}
     - Key: flash
       Value: {fileID: 7174412991816141123, guid: fe236a7541df45140a9871513313097a, type: 3}
+    - Key: footstep
+      Value: {fileID: 4595292361972016900, guid: a1b9d50c4c142af49b0a90cc8eebb7a6, type: 3}
   sub_dictionaries: []

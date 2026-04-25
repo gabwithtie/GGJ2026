@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3402702847286000277}
   - component: {fileID: 2274177478937703624}
   - component: {fileID: 8121181744475317507}
+  - component: {fileID: 6768369261690518231}
+  - component: {fileID: -3525914482426835244}
   m_Layer: 0
   m_Name: Cuttable Wall
   m_TagString: Untagged
@@ -158,16 +160,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.SquareHoleDrawer
   OnHoverEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3525914482426835244}
+        m_TargetAssemblyTypeName: GabUnity.GenericBroadcaster, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHoverExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3525914482426835244}
+        m_TargetAssemblyTypeName: GabUnity.GenericBroadcaster, Assembly-CSharp
+        m_MethodName: FireAlt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6768369261690518231}
+        m_TargetAssemblyTypeName: GabUnity.CostEventGate, Assembly-CSharp
+        m_MethodName: TryBuy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   holeSize: {x: 5, y: 5}
   minSegmentSize: 0.05
+  destroyedPrefab: {fileID: 5161275365895778922, guid: 23d8b35f59fc54b4599d654ae134c1d6, type: 3}
   segmentTag: wallsegment
+--- !u!114 &6768369261690518231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574633588732531687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54d5261756aef245840e92fc5c32680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.CostEventGate
+  onBuySuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8121181744475317507}
+        m_TargetAssemblyTypeName: GabUnity.HolePuncher, Assembly-CSharp
+        m_MethodName: HandlePunchHole
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onBuyFail:
+    m_PersistentCalls:
+      m_Calls: []
+  costInfo: {fileID: 11400000, guid: 5251d0090a766a24f8c5b4983d119551, type: 2}
+--- !u!114 &-3525914482426835244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574633588732531687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7791f5bf6f74b45a20ff1c1fe0f3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.GenericBroadcaster
+  action: {fileID: 11400000, guid: 6d2016809ac8cee4da6262c06e4f1ce4, type: 2}
+  alt_off_action: {fileID: 11400000, guid: 28bb3b2184e9db245a8082f58549ed1d, type: 2}
 --- !u!1001 &7000942445203357994
 PrefabInstance:
   m_ObjectHideFlags: 0
