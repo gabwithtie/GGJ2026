@@ -14,11 +14,23 @@ namespace GabUnity
 
         [Tooltip("If true, the object will be destroyed once it reaches zero scale.")]
         [SerializeField] private bool destroyOnComplete = true;
+        [SerializeField] private bool startOnEnable = true;
 
         private Vector3 _initialScale;
 
         private void OnEnable()
         {
+            if (startOnEnable)
+            {
+                _initialScale = transform.localScale;
+                StartCoroutine(ShrinkRoutine());
+            }
+        }
+
+        public void StartShrink()
+        {
+            StopAllCoroutines();
+
             _initialScale = transform.localScale;
             StartCoroutine(ShrinkRoutine());
         }

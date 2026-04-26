@@ -203,7 +203,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  holeSize: {x: 5, y: 5}
+  holeSize: {x: 3, y: 3}
   minSegmentSize: 0.05
   destroyedPrefab: {fileID: 5161275365895778922, guid: 23d8b35f59fc54b4599d654ae134c1d6, type: 3}
   segmentTag: wallsegment

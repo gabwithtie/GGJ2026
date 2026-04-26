@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2118102212857563203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.19, z: 0}
+  m_LocalPosition: {x: 0, y: 2.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -225,13 +225,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1191798942064383885}
   m_SourcePrefab: {fileID: 100100000, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
 --- !u!4 &2142808021947086859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2590647060754052703, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
   m_PrefabInstance: {fileID: 4489837368230334036}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5144244475995441195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+  m_PrefabInstance: {fileID: 4489837368230334036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1191798942064383885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144244475995441195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067240292dd87b94f9d66db0dcd1c66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneXSetter
+  lane: 0
+  random_x: 0
 --- !u!1001 &4868310952084750776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -347,8 +369,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7771808137950558174}
   m_SourcePrefab: {fileID: 100100000, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+--- !u!1 &4225690711925344199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+  m_PrefabInstance: {fileID: 4868310952084750776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7771808137950558174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4225690711925344199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067240292dd87b94f9d66db0dcd1c66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneXSetter
+  lane: -1
+  random_x: 0
 --- !u!4 &6952542712788711399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2590647060754052703, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
@@ -535,8 +579,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8833068952469730146}
   m_SourcePrefab: {fileID: 100100000, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+--- !u!1 &2271636683019502784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8731103450460161663, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}
+  m_PrefabInstance: {fileID: 7398681720352031423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8833068952469730146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2271636683019502784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067240292dd87b94f9d66db0dcd1c66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaneXSetter
+  lane: 1
+  random_x: 0
 --- !u!4 &4998632839909340384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2590647060754052703, guid: 4f537eff4ca7815479178e9ecd9012dc, type: 3}

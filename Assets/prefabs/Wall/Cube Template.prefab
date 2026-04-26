@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39525da60fdff034eb4e61724d36a14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.TriggerKiller
-  KillTime: 0.1
+  KillTime: 0.05
 --- !u!65 &2837517708568848455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 4.0552177}
+  m_Size: {x: 1, y: 1, z: 5.83}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5161275365895778922
 GameObject:

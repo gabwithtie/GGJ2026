@@ -221,9 +221,9 @@ namespace GabUnity
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.TransformPoint(spawnPosition), new Vector3(width, 0.5f, 0.1f));
+            Gizmos.DrawWireCube(transform.TransformPoint(spawnPosition), new Vector3(0.5f, 0.5f, width));
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(transform.TransformPoint(startPosition), new Vector3(width, 0.5f, 0.1f));
+            Gizmos.DrawWireCube(transform.TransformPoint(startPosition), new Vector3(0.5f, 0.5f, width));
         }
     }
 }
