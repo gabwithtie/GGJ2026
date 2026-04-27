@@ -8,29 +8,33 @@ namespace GabUnity
     public class PlayerMovement : MonoBehaviour
     {
         [Header("Base Movement")]
-        public float MoveSpeed = 6.0f;
-        public float SprintSpeed = 9.0f;
-        public float SpeedChangeRate = 10.0f;
-        public float RotationSmoothTime = 0.12f;
+        [SerializeField] private float moveSpeed = 6.0f;
+        public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+        [SerializeField] private float SprintMult = 2.0f;
+        [SerializeField] private float SpeedChangeRate = 10.0f;
+        [SerializeField] private float RotationSmoothTime = 0.12f;
 
         [Header("Ground Detection")]
-        public LayerMask GroundLayers;
-        public Transform GroundedReference;
-        public float GroundedRadius = 0.28f;
-        public float GroundedOffset = -0.14f;
-        public float GroundedOffsetMax = 0f;
+        [SerializeField] private LayerMask GroundLayers;
+        [SerializeField] private Transform GroundedReference;
+        [SerializeField] private float GroundedRadius = 0.28f;
+        [SerializeField] private float GroundedOffset = -0.14f;
+        [SerializeField] private float GroundedOffsetMax = 0f;
 
         [Header("Jump & Physics")]
-        public float JumpPower = 10f;
-        public float GravityForce = -18.0f;
-        public int MaxJumps = 2;
+        [SerializeField] private float JumpPower = 10f;
+        [SerializeField] private float GravityForce = -18.0f;
+        [SerializeField] private int MaxJumps = 2;
 
         [SerializeField] private UnityEvent OnJump;
         [SerializeField] private UnityEvent OnGround;
+        [SerializeField] private UnityEvent OnMoveGround;
+        [SerializeField] private UnityEvent OnMoveStopGround;
+        [SerializeField] private UnityEvent OffGround;
 
         [Header("Movement Locking (For Rolling/Actions)")]
-        public Animator PlayerAnimator;
-        public string LockedAnimationTag;
+        [SerializeField] private Animator PlayerAnimator;
+        [SerializeField] private string LockedAnimationTag;
 
         // Output Properties
         public float VerticalVelocity => _rb != null ? _rb.linearVelocity.y : 0f;
@@ -93,6 +97,10 @@ namespace GabUnity
         private void UpdateGroundingState(bool grounded)
         {
             if (grounded && !_isGrounded) OnGround.Invoke();
+            if (!grounded && _isGrounded) 
+                OffGround.Invoke();
+
+
             _isGrounded = grounded;
             if (grounded && _timeSinceJump > 0.2f) _jumpCount = 0;
         }
@@ -109,8 +117,19 @@ namespace GabUnity
                 return;
             }
 
-            float targetSpeed = _input.Sprint ? SprintSpeed : MoveSpeed;
-            if (_input.Move == Vector2.zero) targetSpeed = 0f;
+            float targetSpeed = _input.Sprint ? moveSpeed * SprintMult : moveSpeed;
+            if (_input.Move == Vector2.zero)
+            {
+                targetSpeed = 0f;
+
+                if (Grounded)
+                    OnMoveStopGround.Invoke();
+            }
+            else
+            {
+                if (Grounded)
+                    OnMoveGround.Invoke();
+            }
 
             AnimationBlend = Mathf.Lerp(AnimationBlend, targetSpeed, Time.fixedDeltaTime * SpeedChangeRate);
             Vector3 finalMoveDir = GetCameraRelativeInput();
@@ -171,7 +190,7 @@ namespace GabUnity
 
             _jumpCount++;
             _timeSinceJump = 0;
-            _isGrounded = false;
+            UpdateGroundingState(false);
             OnJump.Invoke();
         }
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace GabUnity
@@ -11,6 +12,7 @@ namespace GabUnity
         public float PlaneDist = 10;
         [Tooltip("The detection radius in normalized screen position.")]
         public float ScreenDetectionRadius = 0.1f;
+        public LayerMask blockers;
 
         // The 'Lerped/Snapped' position
         public static Vector3 WorldPosition => Instance._guidedWorldPosition;
@@ -67,6 +69,7 @@ namespace GabUnity
         public void ReportSnapCandidate(Vector3 worldSnapPos, GameObject source)
         {
             if (MainCamera.Cam == null) return;
+            if (!Instance.isActiveAndEnabled) return;
 
             // 1. Convert 3D world points to 2D Screen points
             Vector3 screenp = MainCamera.Cam.WorldToScreenPoint(worldSnapPos);
@@ -97,7 +100,7 @@ namespace GabUnity
                 bool hit_correct = true;
                 bool hit_close = true;
 
-                if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance))
+                if (Physics.Raycast(origin, direction, out RaycastHit hit, maxDistance, blockers, QueryTriggerInteraction.Ignore))
                 {
                     if (hit.collider.gameObject != source)
                         hit_correct = false;

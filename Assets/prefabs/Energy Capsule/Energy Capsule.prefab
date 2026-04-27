@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7097781657927556382}
   - component: {fileID: 1044096213969426440}
   - component: {fileID: 7569923987698209552}
+  - component: {fileID: 2196080800700010934}
+  - component: {fileID: 2653361228787313975}
   m_Layer: 0
   m_Name: Energy Capsule
   m_TagString: Untagged
@@ -95,6 +97,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2196080800700010934}
+        m_TargetAssemblyTypeName: GabUnity.LingeringSoundTrigger, Assembly-CSharp
+        m_MethodName: TriggerSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2653361228787313975}
+        m_TargetAssemblyTypeName: GabUnity.GlobalEffectSpawner, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onExit:
     m_PersistentCalls:
       m_Calls: []
@@ -113,7 +139,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.CurrencyChanger
   currencyInfo: {fileID: 11400000, guid: ef3fb5c9e5899994ebaaa4bdb0cdd39c, type: 2}
-  change: 10
+  change: 5
+  only_once: 1
+--- !u!114 &2196080800700010934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563824901221286175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8d4f82a54a45f4ea578f00c34bcc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.LingeringSoundTrigger
+  audioId: pickup
+  playOnDisable: 0
+  playAtPosition: 1
+--- !u!114 &2653361228787313975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563824901221286175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51f0a27d8911be4d82a9f00c5f4f30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.GlobalEffectSpawner
+  effect_id: pop
+  default_direction: {x: 0, y: 0, z: 0}
 --- !u!1 &7148935829188220006
 GameObject:
   m_ObjectHideFlags: 0

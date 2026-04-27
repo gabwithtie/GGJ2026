@@ -22,9 +22,22 @@ namespace GabUnity
         [Header("Movement Settings")]
         public bool analogMovement;
         public bool forwardLocked = false;
+        private bool locked = false;
 
         [Header("Mouse Cursor Settings")]
         public bool cursorInputForLook = true;
+
+        public void Lock()
+        {
+            locked = true;
+
+            move = Vector2.zero;
+            look = Vector2.zero;
+            jump = false;
+            sprint = false;
+            crouch = false;
+            attack = false;
+        }
 
         private void Start()
         {
@@ -46,6 +59,9 @@ namespace GabUnity
 
             if (forwardLocked)
                 move.y = 1;
+
+            if(locked)
+                move = Vector2.zero;
         }
 
         /// <summary>
@@ -74,6 +90,9 @@ namespace GabUnity
             {
                 jump = false;
             }
+
+            if (locked)
+                jump = false;
         }
 
         /// <summary>
@@ -89,18 +108,27 @@ namespace GabUnity
 
             if (context.started) sprint = true;
             else if (context.canceled) sprint = false;
+
+            if (locked)
+                sprint = false;
         }
 
         public void OnCrouch(InputAction.CallbackContext context)
         {
             if (context.started) crouch = true;
             else if (context.canceled) crouch = false;
+
+            if (locked)
+                crouch = false;
         }
 
         public void OnAttack(InputAction.CallbackContext context)
         {
             if (context.started) attack = true;
             else if (context.canceled) attack = false;
+
+            if (locked)
+                attack = false;
         }
     }
 }

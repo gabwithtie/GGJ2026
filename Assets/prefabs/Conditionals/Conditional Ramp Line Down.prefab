@@ -428,6 +428,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2374452541370922405}
+        m_TargetAssemblyTypeName: GabUnity.AudioOneShotter, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onBuyFail:
     m_PersistentCalls:
       m_Calls: []
@@ -464,6 +476,7 @@ Transform:
   - {fileID: 7597260360957562371}
   - {fileID: 7576284520922720371}
   - {fileID: 2268303687534117202}
+  - {fileID: 8899508554645098526}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5669965150955921396
@@ -779,3 +792,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8634551ce0d2f4fb45219475e40a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.TimedShrinker
+--- !u!1001 &8331841606117685019
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6231197602967699753}
+    m_Modifications:
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.61638
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.0119798
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.13762
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672007848245758655, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+      propertyPath: m_Name
+      value: build audio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+--- !u!114 &2374452541370922405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6004254648370266814, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+  m_PrefabInstance: {fileID: 8331841606117685019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086602b252c013a4780d5011137c4c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GabUnity.AudioOneShotter
+--- !u!4 &8899508554645098526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 585962916513916677, guid: 66e9880dc342aea479508d9ce2fe31c9, type: 3}
+  m_PrefabInstance: {fileID: 8331841606117685019}
+  m_PrefabAsset: {fileID: 0}

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace GabUnity
 {
@@ -15,6 +16,8 @@ namespace GabUnity
         [Tooltip("If true, it affects this object and all children. If false, only this object.")]
         [SerializeField] private bool includeChildren = true;
         [SerializeField] private bool manual_assignment = false;
+        [SerializeField] private UnityEvent OnOn;
+        [SerializeField] private UnityEvent OnOff;
 
         [SerializeField] private List<SpriteRenderer> _renderers = new List<SpriteRenderer>();
         private Coroutine _tweenRoutine;
@@ -62,6 +65,11 @@ namespace GabUnity
 
             if (_tweenRoutine != null) StopCoroutine(_tweenRoutine);
             _tweenRoutine = StartCoroutine(TweenColorRoutine(target));
+
+            if(_isColorB)
+                OnOn.Invoke();
+            else
+                OnOff.Invoke();
         }
 
         private IEnumerator TweenColorRoutine(Color targetColor)

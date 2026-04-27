@@ -11,7 +11,7 @@ namespace GabUnity
         {
             var chosen = choices[Random.Range(0, choices.Count)];
 
-            var newobj = Instantiate(chosen, this.transform.position, Quaternion.identity, this.transform);
+            var newobj = Instantiate(chosen, this.transform);
         }
     }
 }

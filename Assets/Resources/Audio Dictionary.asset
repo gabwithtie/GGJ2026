@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.AudioDictionary
   fallback: {fileID: 0}
   main_dictionary:
-    structs: []
+    structs:
+    - Key: pickup
+      Value: {fileID: 8300000, guid: 62c8d64c856694a4185d17b75b44e192, type: 3}
+    - Key: death
+      Value: {fileID: 8300000, guid: 0277ec16823369342ac280c651460ed6, type: 3}
+    - Key: music
+      Value: {fileID: 8300000, guid: a694c92ec703109458e32822cb4c3eab, type: 3}
   sub_dictionaries: []

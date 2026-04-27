@@ -10,7 +10,7 @@ namespace GabUnity
         [SerializeField] private bool uniform_scale_randomness = true;
         [SerializeField] private Vector3 rotation_randomness;
 
-        private void Start()
+        private void Awake()
         {
             transform.localPosition += new Vector3(
                 Random.Range(-position_randomness.x, position_randomness.x),

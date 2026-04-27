@@ -33,6 +33,7 @@ namespace GabUnity
         [SerializeField] private Vector3 spawnPosition;
         [SerializeField] private Vector3 startPosition;
         [SerializeField] private float currentDiff;
+        public float CurrentDiff { get => currentDiff; set => currentDiff = value; }
 
         [Header("Movement Settings")]
         [SerializeField] private float _speed = 5.0f;

@@ -59,11 +59,13 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\EffectController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\ActionBroadcaster\GenericBroadcaster.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\ActionBroadcaster\GenericActionRequestHandler.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\LingeringSoundTrigger.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedPointerUI.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\InfiniteScrollerSpawner.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Rhythm\RhythmTimelineUi.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\TextParticleSpawner.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\MoveablePanel.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\PositionPopper.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedPointerLine.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\ConditionalPrefab.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Data\GenericListAsset.cs" />
@@ -132,9 +134,11 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\ParticleEffectSequencer.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\CSharp Utility\GetAttributeValue.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Dialogue\MessageRequestHandler.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Currency\OnSpendFailedHandler.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Proximity\ChangeMaterialOnUnitNear.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedPointer.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\PositionTweener.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\ContinuousValueIncreaser.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\TimedPopper.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\LineSpawner.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Status\IStatusGiver.cs" />
@@ -160,6 +164,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedPointerQuad.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Status\StatusInfo.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\PositionSetter.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\AudioPrefabManager.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Projectile\ProjectileController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\VelocityOrient.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Proximity\SimpleRayChecker.cs" />
@@ -174,6 +179,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\EffectDictionary.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectDictionary.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\MusicManager.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\ActionBroadcaster\ActionRequest.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\CopyOnStart.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Dialogue\DialogueActionRequest.cs" />
@@ -1452,12 +1458,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.Sprite.AIIntegration.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.AIIntegration.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor.Shared">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.Shared.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InputSystem">
@@ -1478,6 +1484,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj" />
     <ProjectReference Include="Dreamteck.Utilities.csproj" />
     <ProjectReference Include="Dreamteck.Utilities.Editor.csproj" />
     <ProjectReference Include="Dreamteck.Splines.Editor.csproj" />
