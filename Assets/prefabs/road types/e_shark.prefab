@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 195865578503822859}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -852,7 +852,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30
+  m_Radius: 40
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &653478488705050518
 PrefabInstance:
@@ -979,7 +979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 241207011490712482, guid: e1682db6fc079584ca93a6098d7429c4, type: 3}
       propertyPath: startDelay.scalar
-      value: 1.6
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2625384023334849398, guid: e1682db6fc079584ca93a6098d7429c4, type: 3}
       propertyPath: playOnAwake

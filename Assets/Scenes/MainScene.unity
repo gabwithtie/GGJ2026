@@ -758,7 +758,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 97.8
+    FieldOfView: 100
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -785,8 +785,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241656723}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25071537, y: -8.2238085e-16, z: 3.1669236e-16, w: 0.96806085}
-  m_LocalPosition: {x: 0, y: 2.358, z: -1.82}
+  m_LocalRotation: {x: 0.18604305, y: 0.00000005085578, z: -0.00000000962948, w: 0.9825416}
+  m_LocalPosition: {x: 0, y: 1.368, z: -1}
   m_LocalScale: {x: 0.009999996, y: 0.010000002, z: 0.010000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -806,11 +806,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 5
-    PositionDamping: {x: 0.5, y: 0.5, z: 0.5}
+    PositionDamping: {x: 1, y: 0.6, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 1.79, z: -1.82}
+  FollowOffset: {x: 0, y: 0.8, z: -1}
 --- !u!114 &241656728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,10 +827,10 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0.13}
     DeadZone:
       Enabled: 1
-      Size: {x: 2, y: 0.25}
+      Size: {x: 2, y: 0}
     HardLimits:
       Enabled: 1
-      Size: {x: 2, y: 0.8}
+      Size: {x: 2, y: 0.25}
       Offset: {x: 0, y: -0.56}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
@@ -3334,6 +3334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabUnity.SceneLoader
   NextScene: 0
+  delay: 0
+  doBeforeLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1721091167
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,7 +8822,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 97.8
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -8844,8 +8848,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916848445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2507154, y: -7.9359126e-16, z: 2.0552999e-16, w: 0.96806085}
-  m_LocalPosition: {x: 0, y: 2.358, z: -1.82}
+  m_LocalRotation: {x: 0.18604308, y: 0.000000050855785, z: -0.000000009629481, w: 0.9825416}
+  m_LocalPosition: {x: 0, y: 1.368, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

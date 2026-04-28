@@ -681,6 +681,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6414547680785152514}
     m_Modifications:
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8921587
+      objectReference: {fileID: 0}
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Size.y
+      value: 2.6038928
+      objectReference: {fileID: 0}
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4365333
+      objectReference: {fileID: 0}
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423530804082490951, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2072455365204116297, guid: e8ac9ee246289d3479110401c0146aae, type: 3}
       propertyPath: m_Name
       value: extra collider
