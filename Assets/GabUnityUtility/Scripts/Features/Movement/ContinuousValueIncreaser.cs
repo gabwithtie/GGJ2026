@@ -7,6 +7,7 @@ namespace GabUnity
     {
         [Header("Logic Settings")]
         [SerializeField] private float baseValue = 0f;
+        [SerializeField] private float maxValue = 0f;
         [SerializeField] private float increasePerSecond = 10f;
 
         [Header("State")]
@@ -31,6 +32,9 @@ namespace GabUnity
 
             // Increment based on time passed since last frame
             _currentValue += increasePerSecond * Time.deltaTime;
+
+            if(_currentValue > maxValue)
+                _currentValue = maxValue;
 
             // Push the value to any listeners
             OnValueChanged?.Invoke(_currentValue);

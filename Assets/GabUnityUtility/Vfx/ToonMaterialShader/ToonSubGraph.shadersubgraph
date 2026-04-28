@@ -895,7 +895,7 @@
     "m_ShaderOutputName": "Steps",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 59.5,
+        "x": 57.099998474121097,
         "y": 4.0,
         "z": 4.0,
         "w": 4.0
@@ -1332,10 +1332,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1572.9996337890625,
-            "y": -134.0,
-            "width": 207.9998779296875,
-            "height": 302.00006103515627
+            "x": -1516.0,
+            "y": -146.00001525878907,
+            "width": 126.0,
+            "height": 118.0
         }
     },
     "m_Slots": [
@@ -1355,7 +1355,7 @@
         "x"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -1444,10 +1444,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1860.9998779296875,
-            "y": 25.00018882751465,
-            "width": 207.9998779296875,
-            "height": 326.0001220703125
+            "x": -2176.000244140625,
+            "y": 152.00001525878907,
+            "width": 208.0001220703125,
+            "height": 326.00006103515627
         }
     },
     "m_Slots": [
@@ -1505,7 +1505,7 @@
     "m_ObjectId": "3ab05b856caf4cb2b438fdeccade6313",
     "m_Title": "New Group",
     "m_Position": {
-        "x": -3037.000244140625,
+        "x": -3115.0,
         "y": -814.0
     }
 }
@@ -1757,7 +1757,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.15000000596046449,
+        "x": 0.10000000149011612,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -1783,10 +1783,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -3011.999755859375,
-            "y": 257.0001525878906,
+            "x": -3089.999755859375,
+            "y": 259.0,
             "width": 145.0,
-            "height": 111.00006103515625
+            "height": 110.99996948242188
         }
     },
     "m_Slots": [
@@ -1892,7 +1892,7 @@
         "HLSL"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -2092,10 +2092,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1733.9998779296875,
-            "y": -138.9996795654297,
-            "width": 208.000244140625,
-            "height": 277.9996032714844
+            "x": -1773.0,
+            "y": -198.00003051757813,
+            "width": 128.0,
+            "height": 94.00003051757813
         }
     },
     "m_Slots": [
@@ -2112,7 +2112,7 @@
         "opposite"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -2169,9 +2169,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1733.9998779296875,
-            "y": 221.00025939941407,
-            "width": 208.000244140625,
+            "x": -1749.0001220703125,
+            "y": 234.00001525878907,
+            "width": 208.0,
             "height": 278.0
         }
     },
@@ -2582,10 +2582,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1059.9996337890625,
-            "y": -15.999778747558594,
-            "width": 207.9998779296875,
-            "height": 325.9997253417969
+            "x": -949.0,
+            "y": -27.999996185302736,
+            "width": 207.99993896484376,
+            "height": 326.0000305175781
         }
     },
     "m_Slots": [
@@ -3584,10 +3584,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1382.999755859375,
-            "y": -138.9996795654297,
+            "x": -1348.0,
+            "y": -134.00001525878907,
             "width": 208.0,
-            "height": 277.9996032714844
+            "height": 278.0
         }
     },
     "m_Slots": [
@@ -3604,7 +3604,7 @@
         "opposite"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -3850,7 +3850,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 6.800000190734863,
+        "x": 4.0,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0

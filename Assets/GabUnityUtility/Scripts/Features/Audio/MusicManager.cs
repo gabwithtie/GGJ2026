@@ -17,6 +17,8 @@ namespace GabUnity
         [SerializeField] private float fadeDuration = 1.5f;
         [SerializeField] private float targetVolume = 0.5f;
 
+        private string current_track;
+
         private AudioSource _audioSource;
         private Coroutine _fadeRoutine;
 
@@ -36,6 +38,9 @@ namespace GabUnity
             {
                 // Destroy the duplicate immediately so it doesn't run Start()
                 Destroy(gameObject);
+
+                if (!string.IsNullOrEmpty(defaultTrackId)) //play default track for this scene
+                    Instance.PlayTrack(this.defaultTrackId);
             }
         }
 
@@ -53,6 +58,11 @@ namespace GabUnity
         /// </summary>
         public void PlayTrack(string trackId, bool fade = true)
         {
+            if (trackId == current_track && fade)
+                return; //dont do anything if fading to same
+
+            current_track = trackId;
+
             AudioClip nextTrack = AudioDictionary.Get(trackId);
 
             if (nextTrack == null)

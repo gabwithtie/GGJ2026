@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GabUnity
 {
     [RequireComponent(typeof(LineRenderer))]
-    public class HolePuncher : GuidedInteractable
+    public class HolePuncher : MonoBehaviour
     {
         [Header("Hole Settings")]
         [SerializeField] private Vector2 holeSize = new Vector2(1f, 1f);
@@ -21,6 +21,8 @@ namespace GabUnity
         private LineRenderer _lineRenderer;
         private Collider[] _childColliders;
 
+        private Vector3 worldPos;
+
         private void Start()
         {
             _lineRenderer = GetComponent<LineRenderer>();
@@ -31,53 +33,20 @@ namespace GabUnity
             RefreshColliders();
         }
 
-        protected override void Update()
-        {
-            ReportToPointer();
-            base.Update();
+        public void OnHover(Vector3 worldpos) {
+            _lineRenderer.enabled = true;
+            UpdateLineRendererBox(worldpos);
 
-            if (GuidedPointer.Instance.IsGuided && GuidedPointer.Instance.GuidingObject == gameObject)
-            {
-                _lineRenderer.enabled = true;
-                UpdateLineRendererBox(GuidedPointer.WorldPosition);
-            }
-            else
-            {
-                _lineRenderer.enabled = false;
-            }
+            worldPos = worldpos;
         }
 
-        private void ReportToPointer()
+        public void OnExit()
         {
-            if (MainCamera.Cam == null) return;
-
-            Ray ray = MainCamera.Cam.ScreenPointToRay(GuidedPointer.MouseScreenPosition);
-            RaycastHit closestHit = new RaycastHit();
-            float minDistance = float.MaxValue;
-            bool hitAny = false;
-
-            foreach (var col in _childColliders)
-            {
-                if (col != null && col.Raycast(ray, out RaycastHit hit, 100f))
-                {
-                    if (hit.distance < minDistance)
-                    {
-                        minDistance = hit.distance;
-                        closestHit = hit;
-                        hitAny = true;
-                    }
-                }
-            }
-
-            if (hitAny)
-            {
-                GuidedPointer.Instance.ReportSnapCandidate(closestHit.point, gameObject);
-            }
+            _lineRenderer.enabled = false;
         }
 
         public void HandlePunchHole()
         {
-            Vector3 worldPos = GuidedPointer.WorldPosition;
             Vector3 localCenter = transform.InverseTransformPoint(worldPos);
 
             float hMinX = localCenter.x - (holeSize.x * 0.5f);

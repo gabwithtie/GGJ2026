@@ -21,4 +21,6 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: 0277ec16823369342ac280c651460ed6, type: 3}
     - Key: music
       Value: {fileID: 8300000, guid: a694c92ec703109458e32822cb4c3eab, type: 3}
+    - Key: calmmusic
+      Value: {fileID: 8300000, guid: 86645ec8d28cc324b9c5cd1a5373d63b, type: 3}
   sub_dictionaries: []

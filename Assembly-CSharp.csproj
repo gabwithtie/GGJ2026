@@ -179,6 +179,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\EffectDictionary.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\Management\GlobalEffectDictionary.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\ObjectShaker.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\MusicManager.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\ActionBroadcaster\ActionRequest.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\CopyOnStart.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Status\StatusAnimation.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Dialogue\Dialogue.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Loading\AnimatorSceneSwitcher.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\AnimationCaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\imports\Fonts\seriesorbit\readme.txt" />
