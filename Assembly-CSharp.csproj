@@ -119,10 +119,12 @@
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Rhythm\RhythmManager.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Input\GuidedInteractable.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Proximity\DisableOnUnitNear.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Spawning\TimedEventTweener.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\Panel.cs" />
     <Compile Include="Assets\Scripts\Environment\LaneManager.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Audio\AudioDictionary.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Movement\PositionSmoothSetter.cs" />
+    <Compile Include="Assets\GabUnityUtility\Scripts\Features\Vfx\MaterialPropertyController.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Data\Singleton.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\UI\StopmotionAnimator.cs" />
     <Compile Include="Assets\GabUnityUtility\Scripts\Features\Health\HealthObject.cs" />
